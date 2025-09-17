@@ -1,0 +1,190 @@
+ .faculty-loading-container {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(4px);
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(12, 104, 92, 0.1);
+      padding: 2rem;
+    }
+
+    .faculty-svg {
+      animation: float 3s ease-in-out infinite;
+      filter: drop-shadow(0 4px 8px rgba(12, 104, 92, 0.15));
+    }
+
+    .graduation-cap {
+      animation: bounce 2s ease-in-out infinite;
+      transform-origin: center;
+    }
+
+    .cap-top {
+      animation: shimmer 2s ease-in-out infinite;
+    }
+
+    .tassel {
+      animation: swing 1.5s ease-in-out infinite;
+      transform-origin: 75px 42px;
+    }
+
+    .faculty-figure {
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .floating-books .book-1 {
+      animation: float-book-1 4s ease-in-out infinite;
+    }
+
+    .floating-books .book-2 {
+      animation: float-book-2 3.5s ease-in-out infinite;
+    }
+
+    .floating-books .book-3 {
+      animation: float-book-3 4.5s ease-in-out infinite;
+    }
+
+    .progress-dots {
+      gap: 0.5rem;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      animation: pulse-dot 1.5s ease-in-out infinite;
+    }
+
+    .dot:nth-child(1) {
+      animation-delay: 0s;
+    }
+
+    .dot:nth-child(2) {
+      animation-delay: 0.3s;
+    }
+
+    .dot:nth-child(3) {
+      animation-delay: 0.6s;
+    }
+
+    /* Animations */
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-10px) rotate(2deg);
+      }
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-3px);
+      }
+    }
+
+    @keyframes shimmer {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.7;
+      }
+    }
+
+    @keyframes swing {
+      0%, 100% {
+        transform: rotate(0deg);
+      }
+      25% {
+        transform: rotate(10deg);
+      }
+      75% {
+        transform: rotate(-5deg);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 0.6;
+      }
+      50% {
+        opacity: 0.9;
+      }
+    }
+
+    @keyframes float-book-1 {
+      0%, 100% {
+        transform: translate(0px, 0px) rotate(0deg);
+        opacity: 0.7;
+      }
+      25% {
+        transform: translate(2px, -3px) rotate(5deg);
+        opacity: 0.5;
+      }
+      50% {
+        transform: translate(-1px, -5px) rotate(-2deg);
+        opacity: 0.8;
+      }
+      75% {
+        transform: translate(3px, -2px) rotate(3deg);
+        opacity: 0.6;
+      }
+    }
+
+    @keyframes float-book-2 {
+      0%, 100% {
+        transform: translate(0px, 0px) rotate(0deg);
+        opacity: 0.7;
+      }
+      33% {
+        transform: translate(-2px, -4px) rotate(-3deg);
+        opacity: 0.9;
+      }
+      66% {
+        transform: translate(1px, -6px) rotate(4deg);
+        opacity: 0.5;
+      }
+    }
+
+    @keyframes float-book-3 {
+      0%, 100% {
+        transform: translate(0px, 0px) rotate(0deg);
+        opacity: 0.5;
+      }
+      40% {
+        transform: translate(1px, -3px) rotate(2deg);
+        opacity: 0.8;
+      }
+      80% {
+        transform: translate(-2px, -4px) rotate(-4deg);
+        opacity: 0.6;
+      }
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.2);
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 576px) {
+      .faculty-loading-container {
+        padding: 1.5rem;
+      }
+      
+      .faculty-svg {
+        width: 60px;
+        height: 60px;
+      }
+      
+      .loading-text h5 {
+        font-size: 1rem;
+      }
+    }

@@ -1,0 +1,49 @@
+  <div class="faculty-loading-container d-flex justify-content-center align-items-center" 
+         [style.height.px]="height" 
+         [style.width.px]="width">
+      <div class="loading-content text-center">
+        <!-- Faculty SVG Icon with Animation -->
+        <div class="faculty-icon-container mb-3">
+          <svg width="80" height="80" viewBox="0 0 100 100" class="faculty-svg">
+            <!-- Graduation Cap -->
+            <g class="graduation-cap">
+              <!-- Cap Base -->
+              <ellipse cx="50" cy="45" rx="35" ry="8" fill="#0c685c" class="cap-base"/>
+              <!-- Cap Top -->
+              <path d="M15 45 L50 35 L85 45 L50 55 Z" fill="#d4af37" class="cap-top"/>
+              <!-- Tassel -->
+              <line x1="75" y1="42" x2="82" y2="35" stroke="#d4af37" stroke-width="2" class="tassel"/>
+              <circle cx="82" cy="35" r="2" fill="#d4af37" class="tassel-end"/>
+            </g>
+            
+            <!-- Faculty Figure -->
+            <g class="faculty-figure">
+              <!-- Head -->
+              <circle cx="50" cy="65" r="8" fill="#0c685c" opacity="0.8"/>
+              <!-- Body -->
+              <rect x="45" y="73" width="10" height="18" rx="2" fill="#0c685c" opacity="0.6"/>
+              <!-- Arms -->
+              <rect x="38" y="75" width="6" height="2" rx="1" fill="#0c685c" opacity="0.6"/>
+              <rect x="56" y="75" width="6" height="2" rx="1" fill="#0c685c" opacity="0.6"/>
+            </g>
+
+            <!-- Floating Books -->
+            <g class="floating-books">
+              <rect x="25" y="25" width="8" height="10" rx="1" fill="#d4af37" opacity="0.7" class="book book-1"/>
+              <rect x="67" y="30" width="6" height="8" rx="1" fill="#0c685c" opacity="0.7" class="book book-2"/>
+              <rect x="20" y="70" width="7" height="9" rx="1" fill="#d4af37" opacity="0.5" class="book book-3"/>
+            </g>
+          </svg>
+        </div>
+
+        <!-- Loading Text -->
+        <div class="loading-text">
+          <h5 class="text-primary mb-2" [style.color]="'#0c685c'">{{ loadingText }}</h5>
+          <div class="progress-dots d-flex justify-content-center">
+            <span class="dot" [style.background-color]="'#d4af37'"></span>
+            <span class="dot" [style.background-color]="'#d4af37'"></span>
+            <span class="dot" [style.background-color]="'#d4af37'"></span>
+          </div>
+        </div>
+      </div>
+    </div>

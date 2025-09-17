@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import 'primeicons/primeicons.css';
+@font-face {
+    font-family: 'Cairo';
+    /* src: url('../src/assets/fonts/Cairo-VariableFont_slnt\,wght.ttf') format('woff2');      */
+    font-weight: normal;
+    font-style: normal;
+}
