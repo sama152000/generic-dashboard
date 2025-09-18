@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
     selector: 'app-news',
     standalone: true,
-    imports: [CardModule, FormsModule, ReactiveFormsModule, SubmitButtonsComponent],
+    imports: [CardModule, FormsModule, ReactiveFormsModule],
     templateUrl: './news.component.html',
     styleUrls: ['./news.component.css']
 })

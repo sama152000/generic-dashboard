@@ -1,3 +1,0 @@
-- [ ] Remove unused imports (HeroComponent and AboutComponent) from src/app/pages/pages.routes.ts
-- [ ] Verify all lazy loading import paths and export names are correct
-- [ ] Test the routing after fixes

@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
     selector: 'app-add-edit-news',
     standalone: true,
-    imports: [CardModule, FormsModule, ReactiveFormsModule, SubmitButtonsComponent],
+    imports: [CardModule, FormsModule, ReactiveFormsModule],
     templateUrl: './add-edit-news.component.html',
     styleUrls: ['./add-edit-news.component.css']
 })

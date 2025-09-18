@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
     selector: 'app-add-edit-media',
     standalone: true,
-    imports: [CardModule, FormsModule, ReactiveFormsModule, SubmitButtonsComponent],
+    imports: [CardModule, FormsModule, ReactiveFormsModule],
     templateUrl: './add-edit-media.component.html',
     styleUrls: ['./add-edit-media.component.css']
 })

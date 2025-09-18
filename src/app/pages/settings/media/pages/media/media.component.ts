@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
     selector: 'app-media',
     standalone: true,
-    imports: [CardModule, FormsModule, ReactiveFormsModule, SubmitButtonsComponent],
+    imports: [CardModule, FormsModule, ReactiveFormsModule],
     templateUrl: './media.component.html',
     styleUrls: ['./media.component.css']
 })

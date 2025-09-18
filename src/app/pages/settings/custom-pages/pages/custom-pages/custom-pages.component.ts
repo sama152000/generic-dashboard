@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
     selector: 'app-custom-pages',
     standalone: true,
-    imports: [CardModule, FormsModule, ReactiveFormsModule, SubmitButtonsComponent],
+    imports: [CardModule, FormsModule, ReactiveFormsModule ],
     templateUrl: './custom-pages.component.html',
     styleUrls: ['./custom-pages.component.css']
 })
