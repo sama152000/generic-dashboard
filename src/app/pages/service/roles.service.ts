@@ -1,12 +1,12 @@
 // /* tslint:disable */
 // /* eslint-disable */
 // import { HttpClient, HttpContext } from '@angular/common/http';
-// import { Injectable, Inject } from '@angular/core';
+// import { Injectable } from '@angular/core';
 // import { Observable } from 'rxjs';
 // import { map } from 'rxjs/operators';
 
 // import { BaseService } from '../base-service';
-// import { ApiConfiguration } from '../base-service';
+// import { ApiConfiguration } from '../api-configuration';
 // import { StrictHttpResponse } from '../strict-http-response';
 // import { apiRolesGet$Json } from '../fn/roles/api-roles-get-json';
 // import { ApiRolesGet$Json$Params } from '../fn/roles/api-roles-get-json';
@@ -16,7 +16,7 @@
 
 // @Injectable({ providedIn: 'root' })
 // export class RolesService extends BaseService {
-//   constructor(@Inject(ApiConfiguration) config: ApiConfiguration, http: HttpClient) {
+//   constructor(config: ApiConfiguration, http: HttpClient) {
 //     super(config, http);
 //   }
 

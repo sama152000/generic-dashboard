@@ -1,0 +1,120 @@
+a {
+  text-decoration: none !important;
+  color: inherit;
+  outline: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.5 !important;
+}
+
+body {
+  text-align: start;
+}
+
+body .cdk-global-overlay-wrapper {
+  direction: ltr !important;
+}
+
+body .p-overlay.p-component {
+  right: auto;
+}
+
+[dir='rtl'] * {
+  direction: rtl;
+}
+
+.rtl .p-datepicker .p-datepicker-header .p-datepicker-title {
+  margin: 0 0 0 auto;
+}
+
+.rtl .dropdown-toggle::after {
+  margin-left: unset;
+  margin-right: 0.255em;
+}
+
+.rtl .p-virtualscroller .p-autocomplete-list,
+.rtl .p-virtualscroller .p-virtualscroller-content {
+  right: 0 !important;
+  left: unset !important;
+}
+
+ol,
+ul {
+  padding-left: unset !important;
+}
+
+.p-overlay-mask {
+  background-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.p-dialog {
+  direction: rtl !important;
+  background-color: var(--primary-color) !important;
+  color: var(--white-color) !important;
+  border: none !important;
+}
+
+.p-dialog .p-dialog-header {
+  padding: 0.3rem 1rem;
+}
+
+.p-dialog .p-button-text.p-button-secondary {
+  color: var(--white-color) !important;
+  border-radius: 0.5rem !important;
+}
+
+.p-dialog .p-button-text.p-button-secondary:hover {
+  background-color: var(--white-color) !important;
+  color: red !important;
+  border-radius: 0.5rem !important;
+}
+
+.p-dialog-content {
+  padding: unset !important;
+}
+
+.cdk-overlay-pane .mat-mdc-dialog-actions {
+  padding: 0.3rem 1rem;
+}
+
+.mainHeader {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.subTitle {
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.subTitle img {
+  width: 35px;
+  height: 35px;
+}
+
+.systemBackground {
+  background-color: var(--primary-color) !important;
+}
+
+.systemBackgroundDialog {
+  background-color: var(--primary-color) !important;
+}
+
+.systemBackgroundSecondary {
+  background-color: var(--secondary-color) !important;
+}
+
+.p-autocomplete-option {
+  direction: rtl !important;
+}
+
+.p-autocomplete-option.p-autocomplete-option-selected {
+  background-color: var(--secondary-color) !important;
+  color: var(--datatable-header-color) !important;
+}

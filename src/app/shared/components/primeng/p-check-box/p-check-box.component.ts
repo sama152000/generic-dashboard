@@ -1,15 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CheckboxModule } from 'primeng/checkbox';
 @Component({
-  selector: 'app-p-check-box',
-  templateUrl: './p-check-box.component.html',
-  styleUrls: ['./p-check-box.component.css']
+    selector: 'app-prime-check-box',
+    imports: [ CheckboxModule, FormsModule, ReactiveFormsModule],
+    templateUrl: './p-check-box.component.html',
+    styleUrl: './p-check-box.component.css'
 })
-export class PCheckBoxComponent implements OnInit {
+export class PrimeCheckBoxComponent implements OnInit {
+  @Input() formGroup!: FormGroup;
+  @Input() controlName = '';
+  @Input() value = '';
+  @Input() groupName = '';
+  @Input() label = '';
+  @Input() binary!:boolean;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
+  ngOnInit(): void {
+    console.log('checkbox: ', this.controlName);
   }
-
 }

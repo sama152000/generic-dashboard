@@ -2,9 +2,8 @@ import { Directive, Injectable, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LazyLoadEvent } from 'primeng/api';
 import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
-import { TranslateService } from '@ngx-translate/core';
 import { TableOptions } from '../../shared/interfaces';
-import { DataTableService } from '../../shared';
+import { DataTableService } from '../../shared/services/table/datatable.service';
 import { BaseComponent } from './base-component';
 import { HttpService } from '../../core/services/http/http.service';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
@@ -16,17 +15,15 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 export abstract class BaseListComponent extends BaseComponent implements OnInit {
     data!: any[];
     totalCount: number = 0;
-    language: string = 'ar';
+    language: string = 'en';
     dialogRef: DynamicDialogRef | undefined;
     /* load data at first time */
-    private firstInit!: boolean;   
-     abstract tableOptions: TableOptions;
-
+    private firstInit!: boolean;
+    abstract tableOptions: TableOptions;
     abstract get service(): HttpService;
     protected destroy$: Subject<boolean> = new Subject<boolean>();
     dataTableService = inject(DataTableService);
     dialogService = inject(DialogService);
-    localize = inject(TranslateService);
     constructor(activatedRoute: ActivatedRoute) {
         super(activatedRoute);
     }
@@ -46,6 +43,11 @@ export abstract class BaseListComponent extends BaseComponent implements OnInit 
         if (dataTableEvent.eventType == 'reset') {
             this.resetOpt();
         }
+
+        // if (dataTableEvent.eventType == 'filter') {
+        //   console.log('dataTableEvent at filter:', dataTableEvent);
+        //   this.filter(dataTableEvent.value, dataTableEvent.column,dataTableEvent.filterColumnName,dataTableEvent.dataType)
+        // }
 
         if (dataTableEvent.eventType === 'filter') {
             this.applyFilter(dataTableEvent.value, dataTableEvent.column);
@@ -106,13 +108,13 @@ export abstract class BaseListComponent extends BaseComponent implements OnInit 
     // load data from server
     loadDataFromServer(): void {
         this.dataTableService.loadData(this.tableOptions.inputUrl.getAll).subscribe({
-            next: (res: any) => {
+            next: (res) => {
                 this.data = res.data.data;
                 this.totalCount = res.data.totalCount;
                 console.log('res ::', res);
             },
-            error: (err: any) => {
-                this.alert.error(this.localize.instant('VALIDATION.GET_ERROR'));
+            error: (err) => {
+                this.alert.error('Error getting Data From Server');
             }
         });
     }
@@ -158,29 +160,23 @@ export abstract class BaseListComponent extends BaseComponent implements OnInit 
     }
 
     deleteData(id: string) {
-        this.dataTableService.delete(this.tableOptions.inputUrl.delete, id).subscribe({
-            next: (res: any) => {
-                this.data = res.data;
-                this.totalCount = res.totalCount;
-                this.loadDataFromServer();
-            },
-            error: (err: any) => {
-                this.alert.error(this.localize.instant('VALIDATION.DELETE_ERROR'));
-                console.error('Delete error:', err);
-            }
+        this.dataTableService.delete(this.tableOptions.inputUrl.delete, id).subscribe((res: any) => {
+            this.data = res.data;
+            this.totalCount = res.totalCount;
+            this.loadDataFromServer();
         });
     }
 
     deleteRange(id: string[]) {
         this.dataTableService.deleteRange(this.tableOptions.inputUrl.delete, id).subscribe({
-            next: (res: any) => {
-                this.alert.success('VALIDATION.DELETE_SUCCESS');
+            next: (res) => {
+                this.alert.success('Data deleted successfully');
                 this.data = res.data.data;
                 this.totalCount = res.data.totalCount;
                 this.loadDataFromServer();
             },
-            error: (err: any) => {
-                this.alert.error('VALIDATION.GET_ERROR');
+            error: (err) => {
+                this.alert.error('Error getting Data From Server');
             }
         });
     }

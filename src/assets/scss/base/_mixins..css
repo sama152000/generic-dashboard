@@ -1,0 +1,232 @@
+/* Screen Sizes */
+:root {
+  --min-small: 540px;
+  --min-medium: 720px;
+  --min-normal: 960px;
+  --min-large: 1140px;
+  --min-xLarge: 1320px;
+}
+
+/* Min-width media queries */
+@media only screen and (min-width: 540px) {
+  .min-small {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 720px) {
+  .min-medium {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 960px) {
+  .min-normal {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 1140px) {
+  .min-large {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 1320px) {
+  .min-xLarge {
+    width: 100%;
+  }
+}
+
+/* Max-width media queries */
+@media only screen and (max-width: 539px) {
+  .max-small {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 719px) {
+  .max-medium {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 959px) {
+  .max-normal {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 1139px) {
+  .max-large {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 1319px) {
+  .max-xLarge {
+    width: 100%;
+  }
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  .dark-mode {
+    /* Add your dark mode styles here */
+  }
+}
+
+/* Responsive font sizes */
+.font-10 {
+  font-size: clamp(0.5rem, 0.75vw, 0.75rem) !important;
+}
+.font-11 {
+  font-size: clamp(0.5625rem, 0.8125vw, 0.8125rem) !important;
+}
+.font-12 {
+  font-size: clamp(0.625rem, 0.875vw, 0.875rem) !important;
+}
+.font-13 {
+  font-size: clamp(0.6875rem, 0.9375vw, 0.9375rem) !important;
+}
+.font-14 {
+  font-size: clamp(0.75rem, 1vw, 1rem) !important;
+}
+.font-15 {
+  font-size: clamp(0.8125rem, 1.0625vw, 1.0625rem) !important;
+}
+.font-16 {
+  font-size: clamp(0.875rem, 1.125vw, 1.125rem) !important;
+}
+.font-17 {
+  font-size: clamp(0.9375rem, 1.1875vw, 1.1875rem) !important;
+}
+.font-18 {
+  font-size: clamp(1rem, 1.25vw, 1.25rem) !important;
+}
+.font-19 {
+  font-size: clamp(1.0625rem, 1.3125vw, 1.3125rem) !important;
+}
+.font-20 {
+  font-size: clamp(1.125rem, 1.375vw, 1.375rem) !important;
+}
+.font-21 {
+  font-size: clamp(1.1875rem, 1.4375vw, 1.4375rem) !important;
+}
+.font-22 {
+  font-size: clamp(1.25rem, 1.5vw, 1.5rem) !important;
+}
+.font-23 {
+  font-size: clamp(1.3125rem, 1.5625vw, 1.5625rem) !important;
+}
+.font-24 {
+  font-size: clamp(1.375rem, 1.625vw, 1.625rem) !important;
+}
+.font-25 {
+  font-size: clamp(1.4375rem, 1.6875vw, 1.6875rem) !important;
+}
+.font-26 {
+  font-size: clamp(1.5rem, 1.75vw, 1.75rem) !important;
+}
+.font-27 {
+  font-size: clamp(1.5625rem, 1.8125vw, 1.8125rem) !important;
+}
+.font-28 {
+  font-size: clamp(1.625rem, 1.875vw, 1.875rem) !important;
+}
+.font-29 {
+  font-size: clamp(1.6875rem, 1.9375vw, 1.9375rem) !important;
+}
+.font-30 {
+  font-size: clamp(1.75rem, 2vw, 2rem) !important;
+}
+.font-31 {
+  font-size: clamp(1.8125rem, 2.0625vw, 2.0625rem) !important;
+}
+.font-32 {
+  font-size: clamp(1.875rem, 2.125vw, 2.125rem) !important;
+}
+.font-33 {
+  font-size: clamp(1.9375rem, 2.1875vw, 2.1875rem) !important;
+}
+.font-34 {
+  font-size: clamp(2rem, 2.25vw, 2.25rem) !important;
+}
+.font-35 {
+  font-size: clamp(2.0625rem, 2.3125vw, 2.3125rem) !important;
+}
+.font-36 {
+  font-size: clamp(2.125rem, 2.375vw, 2.375rem) !important;
+}
+.font-37 {
+  font-size: clamp(2.1875rem, 2.4375vw, 2.4375rem) !important;
+}
+.font-38 {
+  font-size: clamp(2.25rem, 2.5vw, 2.5rem) !important;
+}
+.font-39 {
+  font-size: clamp(2.3125rem, 2.5625vw, 2.5625rem) !important;
+}
+.font-40 {
+  font-size: clamp(2.375rem, 2.625vw, 2.625rem) !important;
+}
+.font-41 {
+  font-size: clamp(2.4375rem, 2.6875vw, 2.6875rem) !important;
+}
+.font-42 {
+  font-size: clamp(2.5rem, 2.75vw, 2.75rem) !important;
+}
+.font-43 {
+  font-size: clamp(2.5625rem, 2.8125vw, 2.8125rem) !important;
+}
+.font-44 {
+  font-size: clamp(2.625rem, 2.875vw, 2.875rem) !important;
+}
+.font-45 {
+  font-size: clamp(2.6875rem, 2.9375vw, 2.9375rem) !important;
+}
+.font-46 {
+  font-size: clamp(2.75rem, 3vw, 3rem) !important;
+}
+.font-47 {
+  font-size: clamp(2.8125rem, 3.0625vw, 3.0625rem) !important;
+}
+.font-48 {
+  font-size: clamp(2.875rem, 3.125vw, 3.125rem) !important;
+}
+.font-49 {
+  font-size: clamp(2.9375rem, 3.1875vw, 3.1875rem) !important;
+}
+.font-50 {
+  font-size: clamp(3rem, 3.25vw, 3.25rem) !important;
+}
+.font-51 {
+  font-size: clamp(3.0625rem, 3.3125vw, 3.3125rem) !important;
+}
+.font-52 {
+  font-size: clamp(3.125rem, 3.375vw, 3.375rem) !important;
+}
+.font-53 {
+  font-size: clamp(3.1875rem, 3.4375vw, 3.4375rem) !important;
+}
+.font-54 {
+  font-size: clamp(3.25rem, 3.5vw, 3.5rem) !important;
+}
+.font-55 {
+  font-size: clamp(3.3125rem, 3.5625vw, 3.5625rem) !important;
+}
+.font-56 {
+  font-size: clamp(3.375rem, 3.625vw, 3.625rem) !important;
+}
+.font-57 {
+  font-size: clamp(3.4375rem, 3.6875vw, 3.6875rem) !important;
+}
+.font-58 {
+  font-size: clamp(3.5rem, 3.75vw, 3.75rem) !important;
+}
+.font-59 {
+  font-size: clamp(3.5625rem, 3.8125vw, 3.8125rem) !important;
+}
+.font-60 {
+  font-size: clamp(3.625rem, 3.875vw, 3.875rem) !important;
+}

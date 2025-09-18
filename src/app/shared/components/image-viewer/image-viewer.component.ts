@@ -8,7 +8,7 @@ import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dy
     imports: [DialogModule],
     providers: [DialogService],
     templateUrl: './image-viewer.component.html',
-    styleUrls: ['./image-viewer.component.scss']
+    styleUrls: ['./image-viewer.component.css']
 })
 export class ImageViewerComponent implements OnInit {
   data: any;

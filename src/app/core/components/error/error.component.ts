@@ -5,7 +5,7 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
   selector: 'app-error',
   imports: [RouterModule ],
   templateUrl: './error.component.html',
-  styleUrls: ['./error.component.scss']
+  styleUrls: ['./error.component.css']
 })
 export class ErrorComponent implements OnInit {
   errorNumber = '401';

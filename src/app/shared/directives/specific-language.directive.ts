@@ -31,9 +31,6 @@ export class SpecificLanguageDirective {
     let regex: RegExp = /^/;
 
     switch (language) {
-      case 'ar':
-        regex = /^[\u0600-\u06FF0-9 ~_?`!@#$%^&*()+=|;':",.\-\/\\]*$/; // arabic characters with spaces and numbers
-        break;
       case 'en':
         regex = /^[a-zA-Z0-9 ~_?`!@#$%^&*()+=|;':",.\-\/\\]*$/; // english characters with spaces and numbers
         break;
@@ -47,8 +44,8 @@ export class SpecificLanguageDirective {
   generateError(lang: string): { [key: string]: boolean } {
     let error;
 
-    if (lang === 'ar') {
-      error = { arabic_word: true };
+    if (lang === 'en') {
+      error = { english_word: true };
     } else {
       error = { english_word: true };
     }

@@ -10,13 +10,13 @@ import { LayoutService } from '../service/layout.service';
     selector: 'app-topbar',
     standalone: true,
     imports: [RouterModule, CommonModule, StyleClassModule],
-    template: ` <div class="layout-topbar" dir="rtl">
+    template: ` <div class="layout-topbar custom-topbar" dir="rtl">
         <div class="layout-topbar-logo-container">
             <button class="layout-menu-button layout-topbar-action" (click)="layoutService.onMenuToggle()">
                 <i class="pi pi-bars"></i>
             </button>
             <a class="layout-topbar-logo" routerLink="/">
-                <img src="assets/img/logo.png" alt="Logo" />
+                <img src="assets/img/logo.jpg" alt="Logo" />
                 <!-- <h4 class="light">تطوير لنظم المعلومات</h4> -->
             </a>
         </div>

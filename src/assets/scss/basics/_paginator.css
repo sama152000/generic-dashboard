@@ -1,0 +1,143 @@
+/* Custom Properties for Colors */
+:root {
+  --primary: #2faf65;
+  --white: white;
+  --secondary-color: #e7cfb4;
+  --primary-color: #2faf65;
+}
+
+/* PrimeNG Paginator */
+.p-paginator {
+  box-shadow: 0px 2px 6.3px rgba(0, 0, 0, 0.43);
+  margin: 0 auto;
+  border-bottom-left-radius: 11.48px !important;
+  border-bottom-right-radius: 11.48px !important;
+  border-top-left-radius: unset !important;
+  border-top-right-radius: unset !important;
+  border-top: none;
+  color: #6b7280;
+  padding: 0.5rem 1rem;
+}
+
+.p-paginator .p-paginator-first,
+.p-paginator .p-paginator-prev,
+.p-paginator .p-paginator-next,
+.p-paginator .p-paginator-last {
+  background: var(--secondary-color);
+  border-color: var(--secondary-color);
+  color: var(--primary-color);
+  min-width: 3rem;
+  height: 3rem;
+  transition: box-shadow 0.2s;
+  margin: 0 0.2rem !important;
+  border-radius: 50% !important;
+}
+
+.p-paginator .p-paginator-first:not(.p-disabled):not(.p-highlight):hover,
+.p-paginator .p-paginator-prev:not(.p-disabled):not(.p-highlight):hover,
+.p-paginator .p-paginator-next:not(.p-disabled):not(.p-highlight):hover,
+.p-paginator .p-paginator-last:not(.p-disabled):not(.p-highlight):hover {
+  background: var(--secondary-color);
+  border-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+.p-paginator .p-paginator-first {
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+}
+
+.p-paginator .p-paginator-last {
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+}
+
+.p-paginator .p-paginator-page-input {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.p-paginator .p-paginator-page-input .p-inputtext {
+  max-width: 3rem;
+}
+
+.p-paginator .p-paginator-current {
+  background-color: transparent;
+  border: 0 none;
+  color: #6b7280;
+  min-width: 3rem;
+  height: 3rem;
+  margin: 0.143rem;
+  padding: 0 0.5rem;
+  font-size: 14px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.p-paginator .p-paginator-pages .p-paginator-page {
+  margin: 0 0.2rem !important;
+  border-radius: 50% !important;
+  border: 1px solid rgba(0, 0, 0, 1);
+  transition: box-shadow 0.2s;
+  background-color: transparent;
+}
+
+.p-paginator .p-paginator-pages .p-paginator-page.p-highlight,
+.p-paginator .p-paginator-pages .p-paginator-page:not(.p-highlight):hover {
+  background: var(--secondary-color);
+  border-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+.p-paginator .p-paginator-first,
+.p-paginator .p-paginator-prev,
+.p-paginator .p-paginator-next,
+.p-paginator .p-paginator-last {
+  background-color: transparent;
+  border: 1px solid black;
+  color: black;
+  min-width: 3rem;
+  height: 3rem;
+  margin: 0.143rem;
+  transition: box-shadow 0.2s;
+  border-radius: 11.48px;
+}
+
+.p-paginator.rtl {
+  direction: rtl;
+}
+
+/* New Paginator Selectors for Angular v19+ */
+.p-paginator-page.p-paginator-page-selected {
+  background: var(--primary) !important;
+  color: var(--white) !important;
+  border-color: var(--primary) !important;
+}
+
+/* PrimeNG Select */
+.p-select-option.p-select-option-selected {
+  background: var(--primary) !important;
+  color: var(--white) !important;
+}
+
+.p-select:not(.p-disabled).p-focus {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 0.2rem var(--primary) !important;
+  outline: var(--primary) !important;
+  outline-offset: 0 !important;
+}
+
+/* DataBox and Add Button */
+.dataBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  width: 80%;
+  margin-top: 20px;
+}
+
+.dataBox .addLink {
+  align-self: end;
+}

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { TranslateService } from '@ngx-translate/core';
+// Removed TranslateService import as we will replace it with direct English strings
 import { NamedHttpStatus } from '../../enums/named-http-status';
 import { ConfigService } from '../config/config.service';
 import { AlertService } from '../alert/alert.service';
@@ -16,7 +16,7 @@ export abstract class HttpService extends HttpServiceBaseService {
     protected domainName: string;
     alertService = inject(AlertService);
     configService = inject(ConfigService);
-    localize = inject(TranslateService);
+    // Removed TranslateService injection
     constructor(protected http: HttpClient) {
         super();
         this.domainName = this.configService.getAppUrl('HOST_API');
@@ -105,44 +105,44 @@ export abstract class HttpService extends HttpServiceBaseService {
         if (event.status) {
             if (!Number.isNaN(Number(event.status))) {
                 if (event.status.toString().startsWith('2')) {
-                    this.alertService.success(event.message ? this.localize.instant('VALIDATION.' + event.message) : 'Successfully Done...');
+                    this.alertService.success(event.message ? 'Successfully Done...' : 'Successfully Done...');
                 } else {
-                    this.alertService.error(event.message ? this.localize.instant('VALIDATION.' + event.message) : '!NOT HANDLED ERROR!');
+                    this.alertService.error(event.message ? '!NOT HANDLED ERROR!' : '!NOT HANDLED ERROR!');
                 }
             } else {
                 const status = event.status.toString();
                 switch (status) {
                     case NamedHttpStatus.Created: {
-                        this.alertService.success(event.message ? this.localize.instant('VALIDATION.' + event.message) : 'Successfully Done...');
+                        this.alertService.success(event.message ? 'Successfully Done...' : 'Successfully Done...');
                         break;
                     }
                     case NamedHttpStatus.Accepted: {
-                        this.alertService.success(event.message ? this.localize.instant('VALIDATION.' + event.message) : 'Successfully Done...');
+                        this.alertService.success(event.message ? 'Successfully Done...' : 'Successfully Done...');
                         break;
                     }
                     case NamedHttpStatus.NoContent: {
-                        this.alertService.success(event.message ? this.localize.instant('VALIDATION.' + event.message) : 'Successfully Done...');
+                        this.alertService.success(event.message ? 'Successfully Done...' : 'Successfully Done...');
                         break;
                     }
                     case NamedHttpStatus.BadRequest: {
                         if (event.message === 'VALIDATION_ERROR' && event.data && Array.isArray(event.data)) {
-                            const errorMessages = event.data.map((error) => this.localize.instant('VALIDATION.' + error)).join(', ');
+                            const errorMessages = event.data.map((error) => error).join(', ');
 
                             this.alertService.error(errorMessages);
                         } else {
-                            this.alertService.error(event.message ? this.localize.instant('VALIDATION.' + event.message) : '!NOT HANDLED ERROR!');
+                            this.alertService.error(event.message ? '!NOT HANDLED ERROR!' : '!NOT HANDLED ERROR!');
                         }
                         break;
                     }
                     case NamedHttpStatus.InternalServerError: {
-                        this.alertService.error(event.message ? this.localize.instant('VALIDATION.' + event.message) : this.localize.instant('VALIDATION.INTERNAL_SERVER_ERROR'));
+                        this.alertService.error(event.message ? 'Internal Server Error' : 'Internal Server Error');
                         break;
                     }
                     case NamedHttpStatus.Ok: {
                         break;
                     }
                     default: {
-                        this.alertService.error(event.message ? this.localize.instant('VALIDATION.' + event.message) : '!NOT HANDLED ERROR!');
+                        this.alertService.error(event.message ? '!NOT HANDLED ERROR!' : '!NOT HANDLED ERROR!');
                     }
                 }
             }

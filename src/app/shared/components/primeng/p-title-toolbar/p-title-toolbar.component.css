@@ -1,0 +1,61 @@
+/* Custom Properties for Colors */
+:root {
+  --primary: #2faf65;
+  --white: white;
+  --primary-color: #2faf65;
+  --secondary-color: #e7cfb4;
+}
+
+/* Title Toolbar */
+.title-toolbar .title-container {
+  margin: 2rem 0;
+  display: inline-block;
+}
+
+.title-toolbar .title-container .main-header {
+  font-size: 1.5rem;
+  font-weight: 900;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.title-toolbar .title-container i {
+  color: var(--secondary-color);
+}
+
+.title-toolbar .title-container label {
+  color: var(--primary-color);
+}
+
+.title-toolbar .title-container .header-line {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+}
+
+.title-toolbar .title-container .header-line .decorated-header-line {
+  flex-grow: 1;
+  height: 5px;
+  background-color: var(--primary);
+  border-radius: 0.25rem;
+  margin-right: 2.75rem;
+}
+
+.title-toolbar .title-container .header-line .rectangle-header-line {
+  width: 14px;
+  height: 14px;
+  background-color: var(--primary);
+  margin-left: -0.5rem;
+  transform: rotate(45deg);
+}
+
+/* Support for RTL */
+.rtl .title-toolbar .header-line {
+  flex-direction: row-reverse;
+}
+
+.rtl .title-toolbar .header-line .rectangle-header-line {
+  margin-left: 0;
+  margin-right: -0.5rem;
+}

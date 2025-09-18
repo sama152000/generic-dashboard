@@ -1,0 +1,487 @@
+/* Modern Dashboard Layout Styles */
+/* Modern Layout System - Main File */
+@import url('../base//_variables.css');
+@import url('../../layout/_topbar.css');
+@import url('../../layout/_menu.css');
+@import url('../../layout/_footer.css');
+@import url('../../layout/_footer.css');
+@import url('../../layout/_responsive.css');
+@import url('../../layout/_mixins.css');
+@import url('../../layout/_preloading.css');
+
+/* Layout Wrapper */
+.layout-wrapper {
+  position: relative;
+  min-height: 100vh;
+  background-color: var(--surface-ground);
+  transition: var(--transition-slow);
+}
+
+/* Layout States */
+.layout-wrapper.layout-overlay {
+  --layout-sidebar-width: 0;
+}
+
+.layout-wrapper.layout-static {
+  --layout-sidebar-width: 20rem;
+}
+
+.layout-wrapper.layout-static-inactive {
+  --layout-sidebar-width: 0;
+}
+
+.layout-wrapper.layout-overlay-active .layout-sidebar,
+.layout-wrapper.layout-mobile-active .layout-sidebar {
+  --layout-sidebar-width: 20rem;
+}
+
+/* Main Container */
+.layout-main-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin-right: var(--layout-sidebar-width);
+  padding-top: 4rem;
+  transition: margin-right var(--transition-slow);
+  background-color: var(--surface-ground);
+}
+
+.layout-main {
+  flex: 1;
+  padding: var(--spacing-3xl) var(--spacing-2xl) var(--spacing-2xl);
+  background-color: var(--surface-ground);
+}
+
+/* Layout Mask for Mobile */
+.layout-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.32);
+  z-index: 998;
+  display: none;
+  backdrop-filter: blur(2px);
+  transition: var(--transition-base);
+}
+
+.layout-wrapper.layout-mobile-active .layout-mask,
+.layout-wrapper.layout-overlay-active .layout-mask {
+  display: block;
+}
+
+/* Animation Classes */
+.animate-fadein {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.animate-fadeout {
+  animation: fadeOut 0.3s ease-in;
+}
+
+.animate-scalein {
+  animation: scaleIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes scaleIn {
+  from { 
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to { 
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Blocked Scroll State */
+.blocked-scroll {
+  overflow: hidden !important;
+}
+
+/* Modern Focus States */
+.layout-wrapper *:focus-visible {
+  outline: 2px solid var(--primary-500);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Performance Optimizations */
+.layout-wrapper * {
+  will-change: auto;
+}
+
+.layout-sidebar,
+.layout-topbar,
+.layout-main-container {
+  contain: layout style;
+}
+
+/* Print Styles */
+@media print {
+  .layout-topbar,
+  .layout-sidebar,
+  .layout-footer,
+  .layout-mask {
+    display: none !important;
+  }
+  
+  .layout-main-container {
+    margin-right: 0 !important;
+    padding-top: 0 !important;
+  }
+  
+  .layout-main {
+    padding: 0 !important;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .layout-wrapper {
+    --surface-border: #000000;
+  }
+  
+  .dark .layout-wrapper {
+    --surface-border: #ffffff;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .layout-wrapper,
+  .layout-wrapper *,
+  .layout-wrapper *::before,
+  .layout-wrapper *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+/* Main Container */
+.dataBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  width: 95%;
+  margin-top: var(--spacing-2xl);
+  padding: var(--spacing-xl);
+  background: var(--surface-card);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-base);
+  border: 1px solid var(--surface-border);
+}
+
+.dataBox .addLink {
+  align-self: end;
+  margin-bottom: var(--spacing-lg);
+}
+
+/* Advanced Search Container */
+.advancedSearch {
+  display: flex;
+  margin: 0 auto;
+  width: 85%;
+  max-width: 1200px;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-2xl);
+  background: var(--surface-card);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-base);
+  border: 1px solid var(--surface-border);
+}
+
+/* Modern Gradient Background */
+.linearGradient {
+  color: var(--surface-0);
+  background: linear-gradient(
+    135deg,
+    var(--primary-900) 0%,
+    var(--primary-600) 50%,
+    var(--secondary-500) 100%
+  );
+  border-radius: var(--radius-2xl);
+  width: 100%;
+  min-height: 75vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.linearGradient::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 50%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  pointer-events: none;
+}
+
+/* Dashboard Info Section */
+.dashboardInfo {
+  width: 100%;
+  max-width: 600px;
+  padding: var(--spacing-3xl);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xl);
+}
+
+.dashboardInfo h1 {
+  font-size: var(--text-4xl);
+  font-weight: var(--font-bold);
+  margin-bottom: var(--spacing-lg);
+  background: linear-gradient(135deg, var(--surface-0), var(--surface-200));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dashboardInfo p {
+  font-size: var(--text-lg);
+  color: rgba(255, 255, 255, 0.9);
+  line-height: var(--leading-relaxed);
+  max-width: 500px;
+}
+
+/* Dashboard Carousel */
+.dashboardCarosuel {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Modern Button Overrides */
+.p-button-text.p-button-secondary {
+  color: var(--surface-0) !important;
+  border-radius: var(--radius-lg) !important;
+  padding: var(--spacing-md) var(--spacing-xl) !important;
+  font-weight: var(--font-medium) !important;
+  transition: var(--transition-base) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+.p-button-text.p-button-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: var(--surface-0) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px -3px rgba(0, 0, 0, 0.3) !important;
+}
+
+.p-button-icon-only.p-button-rounded {
+  border-radius: var(--radius-full) !important;
+  height: 2.5rem !important;
+  width: 2.5rem !important;
+  box-shadow: var(--shadow-base) !important;
+  transition: var(--transition-base) !important;
+}
+
+.p-button-icon-only.p-button-rounded:hover {
+  transform: scale(1.05) !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+
+/* Form Grid Modern Layout */
+.p-formgrid.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-2xl);
+  padding: var(--spacing-xl);
+}
+
+.p-formgrid .field.col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.p-formgrid .field.col label {
+  font-weight: var(--font-medium);
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Page Wrapper Modern Styling */
+.page-wrapper {
+  padding: var(--spacing-3xl) var(--spacing-xl) !important;
+  background: var(--surface-ground);
+  min-height: 100vh;
+}
+
+.page-wrapper .p-card {
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-2xl);
+  margin: 0 auto;
+  max-width: 1400px;
+  width: 100%;
+  background: var(--surface-card);
+  box-shadow: var(--shadow-base);
+  overflow: hidden;
+}
+
+.page-wrapper .p-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-1px);
+  transition: var(--transition-slow);
+}
+
+/* Title Styling */
+.page-title {
+  font-size: clamp(1.5rem, 3vw, 3rem) !important;
+  font-weight: var(--font-bold) !important;
+  color: var(--text-primary) !important;
+  margin-bottom: var(--spacing-3xl) !important;
+  text-align: center;
+  position: relative;
+}
+
+.page-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-500), var(--secondary-500));
+  border-radius: var(--radius-full);
+}
+
+/* Padding Utilities */
+.p-x {
+  padding-left: clamp(1rem, 4vw, 3rem) !important;
+  padding-right: clamp(1rem, 4vw, 3rem) !important;
+}
+
+/* Text Truncation */
+.text-truncate-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: var(--leading-snug);
+  max-height: calc(var(--leading-snug) * 3 * 1em);
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .dashboardInfo {
+    width: 50%;
+    padding: var(--spacing-4xl);
+  }
+  
+  .dashboardCarosuel {
+    width: 60vw;
+    max-width: 900px;
+  }
+  
+  .page-wrapper {
+    padding: var(--spacing-4xl) var(--spacing-2xl) !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .dashboardInfo {
+    width: 40%;
+  }
+  
+  .advancedSearch {
+    width: 76%;
+  }
+  
+  .dataBox {
+    width: 95%;
+  }
+  
+  .p-formgrid.grid {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  }
+}
+
+@media (min-width: 1280px) {
+  .page-wrapper .p-card {
+    width: 85%;
+  }
+}
+
+/* Modern Animations */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.dataBox,
+.advancedSearch,
+.page-wrapper .p-card {
+  animation: slideInUp 0.6s var(--transition-base);
+}
+
+.dashboardInfo {
+  animation: fadeInScale 0.8s var(--transition-base);
+}
+
+/* Loading States */
+.loading-skeleton {
+  background: linear-gradient(90deg, var(--surface-200) 0%, var(--surface-300) 50%, var(--surface-200) 100%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: var(--radius-md);
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Dark mode adjustments */
+.dark .loading-skeleton {
+  background: linear-gradient(90deg, var(--surface-700) 0%, var(--surface-600) 50%, var(--surface-700) 100%);
+  background-size: 200% 100%;
+}

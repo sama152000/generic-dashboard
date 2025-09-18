@@ -1,0 +1,299 @@
+/* Custom Properties for Colors */
+:root {
+  --primary: #2faf65;
+  --dark: #1f2937;
+  --primary-light: #d69d53;
+  --secondary: #e7cfb4;
+  --light: #f4f4f5;
+  --success: #10b981;
+  --success-light: rgba(16, 185, 129, 0.11);
+  --error: #ef4444;
+  --error-light: rgba(239, 68, 68, 0.11);
+  --pending: #f59e0b;
+  --purple: #747cf3;
+  --dark-blue: #2a2a49;
+  --blue-light: #60a5fa; /* Fallback for undefined $blue-light */
+  --datatable-header-color: #6b7280; /* Fallback for undefined --datatable-header-color */
+  --secondary-color: #e7cfb4;
+}
+
+/* Text Color Classes */
+.text-dark {
+  color: var(--dark) !important;
+}
+
+.text-primary {
+  color: var(--primary) !important;
+}
+
+.text-primary-light {
+  color: var(--primary-light);
+}
+
+.text-secondary {
+  color: var(--secondary) !important;
+}
+
+.text-middle {
+  color: var(--datatable-header-color) !important;
+}
+
+.text-light {
+  color: var(--light) !important;
+}
+
+.text-success {
+  color: var(--success) !important;
+}
+
+.text-error {
+  color: var(--error) !important;
+}
+
+.text-pending {
+  color: var(--pending) !important;
+}
+
+.text-blue {
+  color: var(--dark-blue) !important;
+}
+
+.text-start {
+  text-align: start !important;
+}
+
+/* Background Color Classes */
+.bg-primary {
+  background-color: var(--primary) !important;
+}
+
+.bg-primary-light {
+  background-color: var(--primary-light);
+}
+
+.bg-primary-light-2 {
+  background-color: rgba(214, 157, 83, 0.023);
+}
+
+.bg-secondary {
+  background-color: var(--secondary) !important;
+}
+
+.bg-middle {
+  background-color: #9ca3af !important;
+}
+
+.bg-light {
+  background-color: var(--light) !important;
+}
+
+.bg-success {
+  background-color: var(--success-light) !important;
+}
+
+.bg-error {
+  background-color: var(--error) !important;
+}
+
+.bg-error-light {
+  background-color: var(--error-light) !important;
+}
+
+.bg-purple {
+  background-color: var(--purple) !important;
+}
+
+.bg-blue {
+  background-color: var(--blue-light) !important;
+}
+
+/* Border Classes */
+.border-purple {
+  border: 1px solid var(--purple);
+}
+
+.border-primary {
+  border-color: var(--primary) !important;
+}
+
+.border-primary-light {
+  border-color: rgba(47, 175, 101, 0.5) !important;
+}
+
+.border-error {
+  border-color: var(--error) !important;
+}
+
+.border {
+  border: 1px solid #dde0e2 !important;
+  border-radius: 1px;
+}
+
+.border-thin {
+  border-width: 0.5px !important;
+}
+
+.title-border-bottom {
+  border-bottom: 2px solid #dde0e2;
+}
+
+.border-radius-0 {
+  border-radius: 0;
+}
+
+.border-radius-2 {
+  border-radius: 2px !important;
+}
+
+.border-radius-4 {
+  border-radius: 4px !important;
+}
+
+.border-radius-8 {
+  border-radius: 8px;
+}
+
+.border-radius-50 {
+  border-radius: 50%;
+}
+
+/* Cursor and Box Shadow */
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.box-shadow {
+  box-shadow: 0 0 10px 0 rgba(52, 58, 64, 0.4);
+}
+
+/* Height and Width */
+.h-40 {
+  height: 40px;
+}
+
+.w-85 {
+  width: 85%;
+}
+
+.w-max {
+  width: auto;
+  min-width: max-content;
+}
+
+/* Positioning */
+.bottom-0 {
+  bottom: 0;
+}
+
+.justify-self-end {
+  justify-self: end;
+}
+
+/* Margins */
+.mTop {
+  margin-top: 2rem !important;
+}
+
+.m-inline-start-1 {
+  margin-inline-start: 0.25rem !important;
+}
+
+.m-inline-start-2 {
+  margin-inline-start: 0.5rem !important;
+}
+
+.m-inline-start-3 {
+  margin-inline-start: 1rem !important;
+}
+
+.m-inline-start-4 {
+  margin-inline-start: 1.5rem !important;
+}
+
+.m-inline-end-1 {
+  margin-inline-end: 0.25rem !important;
+}
+
+.m-inline-end-2 {
+  margin-inline-end: 0.5rem !important;
+}
+
+.m-inline-end-3 {
+  margin-inline-end: 1rem !important;
+}
+
+.m-inline-end-4 {
+  margin-inline-end: 1.5rem !important;
+}
+
+/* Paddings */
+.p-inline-start-1 {
+  padding-inline-start: 0.25rem !important;
+}
+
+.p-inline-start-2 {
+  padding-inline-start: 0.5rem !important;
+}
+
+.p-inline-start-3 {
+  padding-inline-start: 1rem !important;
+}
+
+.p-inline-start-4 {
+  padding-inline-start: 2rem !important;
+}
+
+.p-inline-start-5 {
+  padding-inline-start: 4rem !important;
+}
+
+.p-inline-end-1 {
+  padding-inline-end: 0.25rem !important;
+}
+
+.p-inline-end-2 {
+  padding-inline-end: 0.5rem !important;
+}
+
+.p-inline-end-3 {
+  padding-inline-end: 1rem !important;
+}
+
+.p-inline-end-4 {
+  padding-inline-end: 2rem !important;
+}
+
+.p-inline-end-5 {
+  padding-inline-end: 4rem !important;
+}
+
+/* Page Wrapper and Card */
+.page-wrapper {
+  padding: 0.2rem 1vw 1.5rem !important;
+}
+
+.page-wrapper .p-card {
+  border: 2px solid rgb(170, 125, 67);
+  border-radius: 11.48px;
+  margin: 0 auto;
+  overflow-y: scroll;
+  width: 75%;
+}
+
+.p-x {
+  padding-inline: clamp(1rem, 5vw, 2.5rem) !important;
+}
+
+.page-title {
+  font-size: clamp(1.2rem, 1.9vw, 2.5rem) !important;
+}
+
+/* Text Truncation */
+.text-truncate-3 {
+  display: -webkit-box;
+  display: -moz-box;
+  line-clamp: 3;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

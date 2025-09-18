@@ -1,5 +1,7 @@
+import { Languages } from '../app/core/enums/languages';
+
 export const environment = {
     state: 'development',
-    HOST_API: 'http://advisor.runasp.net/api/',
-    defaultLanguage: 'en'
+    defaultLanguage: Languages.EN,
+    HOST_API: 'http://alisoncollegeen.runasp.net/'
 };

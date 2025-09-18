@@ -4,9 +4,21 @@ export interface TableOptions {
         delete: string;
     };
     bodyOptions: {
+        pageNumber: number;
+        pageSize: number;
+        orderByValue: { colId: string; sort: 'asc' | 'desc' }[];
         filter: any;
     };
     appId: number;
+    permissions?: any;
+    inputCols?: any[];
+    inputActions?: any[];
+    responsiveDisplayedProperties?: string[];
+    rowKeys?: object[];
+    route?: string;
+    includeAppId?: boolean;
+    dataKey?: string;
+    hasFilterInputs?: boolean;
 }
 
 export interface DataTableService {

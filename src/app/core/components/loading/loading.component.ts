@@ -4,7 +4,7 @@ import { Component, Input } from '@angular/core';
     selector: 'app-loading',
     imports: [],
     templateUrl: './loading.component.html',
-  styleUrls: ['./loading.component.scss']
+  styleUrls: ['./loading.component.css']
 })
 export class LoadingComponent {
  @Input() loadingText: string = 'Loading Faculty Data...';

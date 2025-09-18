@@ -7,8 +7,6 @@ import { StorageKeys } from '../../enums/storage-keys';
 export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
   const storageService = inject(StorageService);
   const token = storageService.getItemFromSessionStorage(StorageKeys.AccessToken);
-  const language = storageService.getItemFromLocalStorage(StorageKeys.CurrentLanguage);
-
   req = req.clone({
     setHeaders: {
       Authorization: `Bearer ${token}`,
@@ -16,7 +14,7 @@ export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
       'Cache-Control': 'no-store, must-revalidate',
       Pragma: 'no-cache',
       Expires: '0',
-      'Accept-Language': `${language}`
+      'Accept-Language': 'en'
     }
   });
 

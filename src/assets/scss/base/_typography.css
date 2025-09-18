@@ -1,0 +1,61 @@
+/* Oman Type Face Fonts */
+@font-face {
+  font-family: 'Cairo-Light';
+  font-display: swap;
+  src: url('../../fonts/Cairo-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Cairo-Bold';
+  font-display: swap;
+  src: url('../../fonts/Cairo-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Cairo';
+  font-display: swap;
+  src: url('../../fonts/Cairo-Regular.ttf') format('truetype');
+}
+
+/* Project Fonts */
+:root {
+  --db-font-family-light: 'Cairo-Light', sans-serif;
+  --db-font-family-regular: 'Cairo', sans-serif;
+  --db-font-family-bold: 'Cairo-Bold', sans-serif;
+  --db-font-size: clamp(0.875rem, 1vw, 1.125rem);
+}
+
+/* Assuming responsive-font-size sets base font sizes */
+html {
+  font-size: clamp(14px, 1.5vw, 16px); /* Fallback for responsive-font-size */
+}
+
+body {
+  font-family: var(--db-font-family-regular);
+  font-size: 16px; /* Assuming .font-16 means font-size: 16px */
+}
+
+body * {
+  font-family: var(--db-font-family-regular);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--db-font-family-bold);
+}
+
+h1.regular, h2.regular, h3.regular, h4.regular, h5.regular, h6.regular {
+  font-family: var(--db-font-family-regular);
+}
+
+.fw-bold {
+  font-weight: 400 !important;
+  font-family: var(--db-font-family-bold) !important;
+}
+
+.font-toggle {
+  font-family: 'Cairo', sans-serif !important;
+}
+
+[dir="rtl"] .font-toggle {
+  font-family: 'Cairo', sans-serif !important;
+}

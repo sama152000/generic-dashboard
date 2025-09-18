@@ -30,11 +30,13 @@
     "@angular/platform-browser": "^20.0.0",
     "@angular/router": "^20.0.0",
     "@auth0/angular-jwt": "^5.2.0",
-    "@ngx-translate/core": "^17.0.0",
-    "@ngx-translate/http-loader": "^17.0.0",
     "@primeng/themes": "^20.1.2",
+    "@types/file-saver": "^2.0.7",
+    "@types/xlsx": "^0.0.35",
     "bootstrap": "^5.3.8",
     "chart.js": "^4.5.0",
+    "file-saver": "^2.0.5",
+    "ngx-filesaver": "^20.0.0",
     "ngx-spinner": "^19.0.0",
     "ngx-toaster": "^1.0.1",
     "ngx-toastr": "^19.1.0",
@@ -43,6 +45,7 @@
     "primeng": "^20.1.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "xlsx": "^0.18.5",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {

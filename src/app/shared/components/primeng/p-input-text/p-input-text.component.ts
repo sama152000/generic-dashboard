@@ -1,16 +1,29 @@
-import { Component, OnInit, Input } from '@angular/core';
-
+import { NgClass } from '@angular/common';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { InputTextModule } from 'primeng/inputtext';
+import { SpecificLanguageDirective } from '../../../directives';
+import { ValidationHandlerPipe } from '../../../pipes';
 @Component({
-  selector: 'app-p-input-text',
-  templateUrl: './p-input-text.component.html',
-  styleUrls: ['./p-input-text.component.css']
+    selector: 'app-prime-input-text',
+    imports: [ NgClass, FormsModule, ReactiveFormsModule, InputTextModule, ValidationHandlerPipe, SpecificLanguageDirective],
+    templateUrl: './p-input-text.component.html',
+    styleUrl: './p-input-text.component.css'
 })
-export class PInputTextComponent implements OnInit {
-  @Input() label: string = '';
+export class PrimeInputTextComponent implements OnInit {
+  @Input() formGroup!: FormGroup;
+  @Input() controlName = '';
+  @Input() label = '';
+  @Input() validatorLanguageType = '';
+  @Input() inputType = 'textbox';
+  @Input() contentType = 'text';
+  @Input() appearance = 'outline';
+  @Input() readonly = false;
+  @Input() disabled = false;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
-
 }
+

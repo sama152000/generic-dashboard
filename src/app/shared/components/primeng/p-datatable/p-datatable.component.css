@@ -1,0 +1,158 @@
+/* Custom Properties for Colors */
+:root {
+  --primary-color: #2faf65;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.deleteSelected {
+  margin-top: -4.8%;
+  margin-bottom: 20px;
+  margin-right: 80%;
+}
+
+.icon {
+  font-size: 25px !important;
+  margin: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* PrimeNG Component Styles */
+.p-component {
+  font-size: unset !important;
+}
+
+/* Setting Table Container Border */
+.p-datatable > .p-datatable-table-container {
+  border-top-left-radius: 11.48px;
+  border-top-right-radius: 11.48px;
+}
+
+.p-datatable {
+  box-shadow: 1px 2px 10px var(--primary-color);
+  border-radius: 11.48px;
+}
+
+/* Setting Table Header Row Styles */
+.p-datatable .p-datatable-thead .table-header {
+  background-color: white;
+}
+
+.p-datatable .p-datatable-thead .table-header > th {
+  text-align: center;
+  font-size: 14px !important;
+}
+
+.p-datatable .p-datatable-thead .table-header > th:hover,
+.p-datatable .p-datatable-thead .table-header > th:focus,
+.p-datatable .p-datatable-thead .table-header > th:active {
+  background-color: #0000000a;
+  color: black;
+}
+
+.p-datatable .p-datatable-thead .table-search-controls > th {
+  text-align: center;
+}
+
+.p-datatable td {
+  font-size: 14px !important;
+}
+
+/* Table Body Styles */
+.p-datatable tbody > tr a {
+  color: #028bff;
+}
+
+.p-datatable tbody > tr a:hover,
+.p-datatable tbody > tr a:focus,
+.p-datatable tbody > tr a:active {
+  color: #222;
+  outline: 0;
+}
+
+.p-datatable tbody > tr:nth-child(odd) {
+  background-color: #f2f3f8;
+}
+
+.p-datatable tbody > tr > td {
+  padding: 5px;
+  text-align: center;
+  border: none !important;
+}
+
+.p-datatable .pi-sort-alt {
+  color: #fff;
+}
+
+.search-box {
+  border: 1px solid var(--primary-color) !important;
+  text-align: center;
+}
+
+.search-box::placeholder {
+  font-size: 70%;
+  text-align: center;
+  height: 100%;
+  line-height: 1.5;
+}
+
+.has-search .form-control {
+  padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #343a40;
+}
+
+/* RTL Support for Paginator */
+.rtl .p-paginator .p-paginator-element {
+  transform: rotate(180deg);
+}
+
+.rtl .p-paginator .p-paginator-pages .p-paginator-element {
+  transform: none;
+}
+
+.trueValue,
+.falseValue {
+  color: white;
+  width: 35px;
+  height: 35px;
+  padding: 7px;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+.trueValue i,
+.falseValue i {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.trueValue {
+  background-color: rgba(56, 199, 20, 1);
+}
+
+.falseValue {
+  background-color: rgba(235, 0, 0, 1);
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 767px) {
+  .p-datatable > .p-datatable-table-container {
+    overflow: auto !important;
+  }
+}

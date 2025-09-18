@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-p-title-toolbar',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./p-title-toolbar.component.css']
 })
 export class PTitleToolbarComponent implements OnInit {
+
+  @Input() pageTitle: string = '';
 
   constructor() { }
 

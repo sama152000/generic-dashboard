@@ -22,68 +22,96 @@ export class AppMenu {
         this.model = [
             {
                 label: 'الرئيسية',
-                items: [{ label: 'لوحة التحكم', icon: 'pi pi-fw pi-home', routerLink: ['/'] }]
+                items: [
+                    { label: 'لوحة التحكم', icon: 'pi pi-fw pi-home', routerLink: ['/'] }
+                ]
             },
             {
-                label: '',
+                label: 'الإعدادات',
+                icon: 'pi pi-fw pi-spin pi-cog',
                 items: [
                     {
-                        label: 'الاعدادات',
-                        icon: 'pi pi-fw pi-spin pi-cog',
-                        routerLink: ['/pages'],
+                        label: 'نظرة عامة',
+                        icon: 'pi pi-fw pi-chart-line',
+                        routerLink: ['/pages/settings/overview']
+                    },
+                    {
+                        label: 'إدارة الهيرو',
+                        icon: 'pi pi-fw pi-sliders-h',
+                        routerLink: ['/pages/settings/hero-management']
+                    },
+                    {
+                        label: 'الصفحات',
+                        icon: 'pi pi-fw pi-folder',
                         items: [
                             {
-                                label: 'المسميات الوظيفية',
-                                icon: 'pi pi-briefcase',
-                                routerLink: ['/pages/settings/positions']
+                                label: 'من نحن',
+                                icon: 'pi pi-fw pi-info-circle',
+                                routerLink: ['/pages/settings/pages/about']
                             },
                             {
-                                label: 'تسعير العناصر',
-                                icon: 'pi pi-tag',
-                                routerLink: ['/pages/settings/item-pricing']
+                                label: 'الأقسام',
+                                icon: 'pi pi-fw pi-building',
+                                routerLink: ['/pages/settings/pages/departments']
                             },
                             {
-                                label: 'الوحدات ',
-                                icon: 'pi pi-box',
-                                routerLink: ['/pages/settings/units']
+                                label: 'الموظفون',
+                                icon: 'pi pi-fw pi-users',
+                                routerLink: ['/pages/settings/pages/staff']
                             },
                             {
-                                label: 'الشركة المصنعة ',
-                                icon: 'pi pi-building',
-                                routerLink: ['/pages/settings/vendor']
-                            },
-
-                            {
-                                label: 'مسميات الفروع',
-                                icon: 'pi pi-sitemap',
-                                routerLink: ['/pages/settings/branchs']
-                            },
-                            {
-                                label: 'مسميات المناطق',
-                                icon: 'pi pi-warehouse',
-                                routerLink: ['/pages/settings/regions']
-                            },
-                            {
-                                label: 'الخزن',
-                                icon: 'pi pi-server',
-                                routerLink: ['/pages/settings/treasury']
-                            },
-                            {
-                                label: 'تصنيفات العملاء',
-                                icon: 'pi pi-cart-minus',
-                                routerLink: ['/pages/settings/client-category']
-                            },
-                            {
-                                label: 'تصنيفات الموردين',
-                                icon: 'pi pi-cart-arrow-down',
-                                routerLink: ['/pages/settings/seller-category']
-                            },
-                            {
-                                label: 'صلاحيات المستخدم',
-                                icon: 'pi pi-shield',
-                                routerLink: ['/pages/settings/user-role']
+                                label: 'القطاعات',
+                                icon: 'pi pi-fw pi-sitemap',
+                                routerLink: ['/pages/settings/pages/sectors']
                             }
                         ]
+                    },
+                    {
+                        label: 'المنشورات',
+                        icon: 'pi pi-fw pi-megaphone',
+                        items: [
+                            {
+                                label: 'الأخبار',
+                                icon: 'pi pi-fw pi-megaphone',
+                                routerLink: ['/pages/settings/posts/news']
+                            }
+                        ]
+                    },
+                    {
+                        label: 'الصفحات المخصصة',
+                        icon: 'pi pi-fw pi-file',
+                        items: [
+                            {
+                                label: 'الصفحات المخصصة',
+                                icon: 'pi pi-fw pi-file',
+                                routerLink: ['/pages/settings/custom-pages']
+                            },
+                            {
+                                label: 'المسودات',
+                                icon: 'pi pi-fw pi-file',
+                                routerLink: ['/pages/settings/custom-pages/drafts']
+                            },
+                            {
+                                label: 'الصفحات المنشورة',
+                                icon: 'pi pi-fw pi-file',
+                                routerLink: ['/pages/settings/custom-pages/published']
+                            }
+                        ]
+                    },
+                    {
+                        label: 'الوسائط',
+                        icon: 'pi pi-fw pi-images',
+                        routerLink: ['/pages/settings/media']
+                    },
+                    {
+                        label: 'القوائم',
+                        icon: 'pi pi-fw pi-bars',
+                        routerLink: ['/pages/settings/menus']
+                    },
+                    {
+                        label: 'الإعدادات',
+                        icon: 'pi pi-fw pi-cog',
+                        routerLink: ['/pages/settings']
                     }
                 ]
             },
@@ -92,15 +120,12 @@ export class AppMenu {
                 icon: 'pi pi-fw pi-briefcase',
                 items: [
                     {
-                        label: 'الاصناف',
+                        label: 'الأصناف',
                         icon: 'pi pi-fw pi-tags',
                         routerLink: ['/pages/items']
-                    },
-
-
-
+                    }
                 ]
-            },
+            }
         ];
     }
 }

@@ -7,13 +7,15 @@ import { RevenueStreamWidget } from './components/revenuestreamwidget';
     selector: 'app-dashboard',
     imports: [StatsWidget, BestSellingWidget, RevenueStreamWidget],
     template: `
-        <div class="grid grid-cols-12 gap-8">
-            <app-stats-widget class="contents" />
-            <div class="col-span-12 xl:col-span-6">
-                <app-best-selling-widget />
-            </div>
-            <div class="col-span-12 xl:col-span-6">
-                <app-revenue-stream-widget />
+        <div class="dashboard-container">
+            <div class="grid grid-cols-12 dashboard-grid">
+                <app-stats-widget class="contents" />
+                <div class="col-span-12 xl:col-span-6">
+                    <app-best-selling-widget />
+                </div>
+                <div class="col-span-12 xl:col-span-6">
+                    <app-revenue-stream-widget />
+                </div>
             </div>
         </div>
     `

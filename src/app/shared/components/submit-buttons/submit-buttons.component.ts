@@ -7,7 +7,7 @@ import { ToolbarModule } from 'primeng/toolbar';
   selector: 'app-submit-buttons',
   imports: [ToolbarModule, RouterModule, CardModule],
   templateUrl: './submit-buttons.component.html',
-  styleUrls: ['./submit-buttons.component.scss']
+  styleUrls: ['./submit-buttons.component.css']
 })
 export class SubmitButtonsComponent {
   @Input() isSubmitDisabled: boolean = false;

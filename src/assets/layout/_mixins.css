@@ -1,0 +1,56 @@
+/* Custom Properties for Focus Variables */
+:root {
+  --focus-ring-width: 2px;
+  --focus-ring-style: solid;
+  --focus-ring-color: #2faf65;
+  --focus-ring-offset: 2px;
+  --focus-ring-shadow: 0 0 0 0.2rem rgba(47, 175, 101, 0.5);
+  --transition-duration: 0.2s;
+}
+
+/* Focused Class (Simulating @mixin focused()) */
+.focused {
+  outline-width: var(--focus-ring-width);
+  outline-style: var(--focus-ring-style);
+  outline-color: var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+  box-shadow: var(--focus-ring-shadow);
+  transition:
+    box-shadow var(--transition-duration),
+    outline-color var(--transition-duration);
+}
+
+/* Focused Inset Class (Simulating @mixin focused-inset()) */
+.focused-inset {
+  outline-offset: -1px;
+  box-shadow: inset var(--focus-ring-shadow);
+}
+
+/* Applying to Previously Used Classes from layout-topbar */
+.layout-topbar .layout-topbar-logo:focus-visible {
+  outline-width: 2px;
+  outline-style: solid;
+  outline-color: #2faf65;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 0.2rem rgba(47, 175, 101, 0.5);
+  transition:
+    box-shadow 0.2s,
+    outline-color 0.2s;
+}
+
+.layout-topbar .layout-topbar-action:focus-visible {
+  outline-width: 2px;
+  outline-style: solid;
+  outline-color: #2faf65;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 0.2rem rgba(47, 175, 101, 0.5);
+  transition:
+    box-shadow 0.2s,
+    outline-color 0.2s;
+}
+
+/* Applying to Previously Used Classes from layout-sidebar (Commented focus) */
+.layout-menu ul a:focus {
+  outline-offset: -1px;
+  box-shadow: inset 0 0 0 0.2rem rgba(47, 175, 101, 0.5);
+}

@@ -8,6 +8,8 @@ import { Subject, takeUntil } from 'rxjs';
 export abstract class BaseEditComponent extends BaseComponent implements OnInit {
     model: any = {};
     form!: FormGroup;
+    isEnglish = false;
+    language: string = 'en';
     id: string = '';
     role: any = {};
     fb = inject(FormBuilder);
