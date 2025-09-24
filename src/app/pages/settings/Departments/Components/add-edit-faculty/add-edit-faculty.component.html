@@ -1,0 +1,24 @@
+<p-card class="p-2 m-0">
+    @if (form) {
+        <form method="post" class="row" [formGroup]="form">
+            <div class="col-lg-6">
+                <app-prime-input-text [formGroup]="form" controlName="name" validatorLanguageType="ar" [label]="'الاسم'"></app-prime-input-text>
+            </div>
+            <div class="col-lg-6">
+                <app-prime-input-text [formGroup]="form" controlName="title" [label]="'اللقب'"></app-prime-input-text>
+            </div>
+            <div class="col-lg-6">
+                <app-prime-input-text [formGroup]="form" controlName="specialization" [label]="'التخصص'"></app-prime-input-text>
+            </div>
+            <div class="col-lg-6">
+                <app-prime-input-text [formGroup]="form" controlName="email" [label]="'الإيميل'"></app-prime-input-text>
+            </div>
+            <div class="col-lg-6">
+                <app-prime-input-text [formGroup]="form" controlName="photo" [label]="'الصورة'"></app-prime-input-text>
+            </div>
+        </form>
+    }
+</p-card>
+@if (form) {
+    <app-submit-buttons [isSubmitDisabled]="form.invalid" [submitButtonText]="pageType === 'add' ? 'إضافة' : 'حفظ'" (submit)="submit()" (cancel)="closeDialog()"></app-submit-buttons>
+}

@@ -1,37 +1,41 @@
-<!-- List View -->
-@if (!pageType || pageType === '') {
-    <p-card class="p-2 m-0">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <app-p-title-toolbar [pageTitle]="'الأقسام'"></app-p-title-toolbar>
-            <p-button label="إضافة قسم جديد" icon="pi pi-plus" (onClick)="openAddDialog()"></p-button>
-        </div>
-
-        <app-prime-data-table
-            [tableOptions]="tableOptions"
-            [data]="data"
-            [totalCount]="totalCount"
-            (handleEvent)="handleEvent($event)">
-        </app-prime-data-table>
-    </p-card>
-}
-<!-- Add/Edit Form View -->
-@if (pageType === 'add' || pageType === 'edit') {
-    <p-card class="p-2 m-0">
-        @if (form) {
-            <form method="post" class="row" [formGroup]="form">
-                <div class="col-lg-6">
-                    <app-p-input-text [formGroup]="form" controlName="nameAr" validatorLanguageType="ar"> </app-p-input-text>
-                </div>
-                <div class="col-lg-6">
-                    <app-p-input-text [formGroup]="form" controlName="nameEn"  > </app-p-input-text>
-                </div>
-                <div class="col-lg-6">
-                    <app-p-input-text [formGroup]="form" controlName="code" > </app-p-input-text>
-                </div>
-            </form>
-        }
-    </p-card>
+<p-card class="p-2 m-0">
     @if (form) {
-        <app-submit-buttons [isSubmitDisabled]="form.invalid" [submitButtonText]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SAVE'" (submit)="submit()" (cancel)="closeDialog()"> </app-submit-buttons>
+        <form method="post" class="row" [formGroup]="form">
+            <div class="col-lg-6">
+                <app-prime-input-text [formGroup]="form" controlName="name" validatorLanguageType="ar" [label]="'اسم القسم'"> </app-prime-input-text>
+            </div>
+            <div class="col-lg-6">
+                <app-prime-input-text [formGroup]="form" controlName="shortName" [label]="'الاسم المختصر'"> </app-prime-input-text>
+            </div>
+            <div class="col-lg-6">
+                <app-prime-input-text [formGroup]="form" controlName="overview" [label]="'نظرة عامة'"> </app-prime-input-text>
+            </div>
+            <div class="col-lg-6">
+                <app-prime-input-text [formGroup]="form" controlName="type" [label]="'النوع'"> </app-prime-input-text>
+            </div>
+            <div class="col-lg-6">
+                <app-prime-input-text [formGroup]="form" controlName="image" [label]="'الصورة'"> </app-prime-input-text>
+            </div>
+            <!-- Contact Subform -->
+           <!-- Contact Subform -->
+<div class="col-lg-12">
+    <h5>معلومات الاتصال</h5>
+</div>
+<div class="col-lg-4">
+    <app-prime-input-text [formGroup]="form" controlName="contact.email" [label]="'الإيميل'"></app-prime-input-text>
+</div>
+<div class="col-lg-4">
+    <app-prime-input-text [formGroup]="form" controlName="contact.phone" [label]="'الهاتف'"></app-prime-input-text>
+</div>
+<div class="col-lg-4">
+    <app-prime-input-text [formGroup]="form" controlName="contact.office" [label]="'المكتب'"></app-prime-input-text>
+</div>
+<div class="col-lg-4">
+    <app-prime-input-text [formGroup]="form" controlName="contact.headOfDepartment" [label]="'رئيس القسم'"></app-prime-input-text>
+</div>
+        </form>
     }
+</p-card>
+@if (form) {
+    <app-submit-buttons [isSubmitDisabled]="form.invalid" [submitButtonText]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SAVE'" (submit)="submit()" (cancel)="closeDialog()"> </app-submit-buttons>
 }

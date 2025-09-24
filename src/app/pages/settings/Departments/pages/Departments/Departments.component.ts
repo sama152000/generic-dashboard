@@ -1,74 +1,131 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { BaseEditComponent } from '../../../../../base/components/base-edit-component';
+import { Component, inject, Input } from '@angular/core';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
-import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { SubmitButtonsComponent } from '../../../../../shared/components/submit-buttons/submit-buttons.component';
 import { DepartmentsService } from '../../../../../shared/services/settings/departments/departments.service';
-import { PrimeInputTextComponent } from '../../../../../shared/components/primeng/p-input-text/p-input-text.component';
-
-import { DialogService } from 'primeng/dynamicdialog';
-import { ActivatedRoute } from '@angular/router';
+import { TableOptions } from '../../../../../shared/interfaces';
+import { BaseListComponent } from '../../../../../base/components/base-list-component';
+import { takeUntil } from 'rxjs';
+import { AddEditDepartmentComponent } from '../../Components/add-edit-department/add-edit-department.component';
+import { PTitleToolbarComponent } from "../../../../../shared/components/primeng/p-title-toolbar/p-title-toolbar.component";
+import { PrimeDataTableComponent } from "../../../../../shared/components/primeng/p-datatable/p-datatable.component";
 
 @Component({
     selector: 'app-departments',
     standalone: true,
-    imports: [CardModule, FormsModule, ReactiveFormsModule, SubmitButtonsComponent, PrimeInputTextComponent],
-    templateUrl: './Departments.component.html',
-    styleUrls: ['./Departments.component.css']
+    imports: [RouterModule, CardModule, PTitleToolbarComponent, PrimeDataTableComponent],
+    templateUrl:'./Departments.component.html',
+    styleUrl: './Departments.component.css'
 })
-export class DepartmentComponent extends BaseEditComponent implements OnInit {
-    departmentsService: DepartmentsService = inject(DepartmentsService);
-    dialogService: DialogService = inject(DialogService);
+export class DepartmentsComponent extends BaseListComponent {
+    @Input() apiConfig: { getPaged: string; delete: string } = { // @Input لتخصيص APIs
+        getPaged: 'getPaged',
+        delete: 'deletesoft'
+    };
 
-    constructor(override activatedRoute: ActivatedRoute) {
+    isEnglish = false;
+    tableOptions!: TableOptions;
+    service = inject(DepartmentsService);
+
+    constructor(activatedRoute: ActivatedRoute) {
         super(activatedRoute);
     }
 
     override ngOnInit(): void {
         super.ngOnInit();
-        this.dialogService.dialogComponentRefMap.forEach((element) => {
-            this.pageType = element.instance.ddconfig.data.pageType;
-            if (this.pageType === 'edit') {
-                this.id = element.instance.ddconfig.data.row.rowData.id;
+        this.initializeTableOptions();
+    }
+
+    initializeTableOptions() {
+        this.tableOptions = {
+            inputUrl: {
+                getAll: `v1/departments/${this.apiConfig.getPaged}`, // استخدم apiConfig
+                delete: `v1/departments/${this.apiConfig.delete}`
+            },
+            inputCols: this.initializeTableColumns(),
+            inputActions: this.initializeTableActions(),
+            permissions: {
+                componentName: 'DEPARTMENTS-MANAGEMENT', // غير حسب الاحتياج
+                allowAll: true,
+                listOfPermissions: []
+            },
+            bodyOptions: {
+                pageNumber: 1,
+                pageSize: 10,
+                orderByValue: [{ colId: 'id', sort: 'asc' }],
+                filter: {}
+            },
+            appId: 0,
+            responsiveDisplayedProperties: ['name', 'shortName', 'type']
+        };
+    }
+
+    initializeTableColumns(): TableOptions['inputCols'] {
+        return [
+            {
+                field: 'name',
+                header: 'الاسم',
+                filter: true,
+                filterMode: 'text'
+            },
+            {
+                field: 'shortName',
+                header: 'الاسم المختصر',
+                filter: true,
+                filterMode: 'text'
+            },
+            {
+                field: 'type',
+                header: 'النوع',
+                filter: true,
+                filterMode: 'text'
+            },
+            {
+                field: 'overview',
+                header: 'نظرة عامة',
+                filter: false
             }
-        });
-        if (this.pageType === 'edit') {
-            this.getEditDepartment();
-        } else {
-            this.initFormGroup();
-        }
+            // أضف image و contact إذا لازم، بس مش مناسب للجدول دائمًا
+        ];
     }
 
-    initFormGroup() {
-        this.form = this.fb.group({
-            id: [''],
-            code: ['', Validators.required],
-            nameAr: ['', Validators.required],
-            nameEn: ['']
+    initializeTableActions(): TableOptions['inputActions'] {
+        return [
+            {
+                name: 'Edit',
+                icon: 'pi pi-file-edit',
+                color: 'text-middle',
+                isCallBack: true,
+                call: (row: any) => {
+                    this.openEdit(row);
+                },
+                allowAll: true
+            },
+            {
+                name: 'DELETE',
+                icon: 'pi pi-trash',
+                color: 'text-error',
+                allowAll: true,
+                isDelete: true
+            }
+        ];
+    }
+
+    openAdd() {
+        this.openDialog(AddEditDepartmentComponent, 'إضافة قسم جديد', {
+            pageType: 'add'
         });
     }
 
-    getEditDepartment() {
-        this.departmentsService.getEditDepartments(this.id).subscribe((department: any) => {
-            this.initFormGroup();
-            this.form.patchValue(department);
+    openEdit(rowData: any) {
+        this.openDialog(AddEditDepartmentComponent, 'تعديل القسم', {
+            pageType: 'edit',
+            row: { rowData }
         });
     }
 
-    submit() {
-        if (this.pageType === 'add')
-            this.departmentsService.add(this.form.value).subscribe(() => {
-                this.closeDialog();
-            });
-        if (this.pageType === 'edit')
-            this.departmentsService.update({ id: this.id, ...this.form.value }).subscribe(() => {
-                this.closeDialog();
-            });
-    }
-
-    closeDialog() {
-        this.dialogService.dialogComponentRefMap.forEach((dialog) => {
-            dialog.destroy();
-        });
+    /* when leaving the component */
+    override ngOnDestroy() {
+        this.destroy$.next(true);
+        this.destroy$.unsubscribe();
     }
 }

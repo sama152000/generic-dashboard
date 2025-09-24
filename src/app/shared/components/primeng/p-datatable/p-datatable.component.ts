@@ -10,7 +10,7 @@ import { PrimeDeleteDialogComponent } from '../p-delete-dialog/p-delete-dialog.c
 import { Toolbar } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
 @Component({
-    selector: 'app-prime-data-table',
+    selector: 'app-p-datatable',
     imports: [TableModule, NgClass, RouterModule, PrimeDeleteDialogComponent, DatePipe, Toolbar, ButtonModule],
     templateUrl: './p-datatable.component.html',
     styleUrls: ['./p-datatable.component.css']
@@ -53,7 +53,7 @@ export class PrimeDataTableComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.permissions = this.tableOptions.permissions;
-        this._data.subscribe((x) => {
+        this._data.pipe(takeUntil(this.destroy$)).subscribe((x) => {
             this.finalData = this.data;
             console.log(x);
 
@@ -128,7 +128,6 @@ export class PrimeDataTableComponent implements OnInit, OnDestroy {
     /* when leaving the component */
     ngOnDestroy() {
         this.event.emit({ eventType: 'reset' });
-        this._data.unsubscribe();
         this.destroy$.next(true);
         this.destroy$.unsubscribe();
     }

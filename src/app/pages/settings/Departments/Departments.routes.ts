@@ -1,12 +1,12 @@
 import { Routes } from '@angular/router';
 import { AddEditDepartmentComponent } from './Components/add-edit-department/add-edit-department.component';
-import { DepartmentComponent } from './pages/Departments/Departments.component';
+import { DepartmentsComponent } from './pages/Departments/Departments.component';
+import { AddDepartmentFeaturesComponent } from './Components/add-department-features/add-department-features.component';
 
 export const DepartmentsRoutes: Routes = [
-
     {
         path: '',
-        component: DepartmentComponent
+        component: DepartmentsComponent
     },
     {
         path: 'add',
@@ -15,5 +15,9 @@ export const DepartmentsRoutes: Routes = [
     {
         path: 'edit/:id',
         component: AddEditDepartmentComponent
+    },
+    {
+        path: 'features',
+        component: AddDepartmentFeaturesComponent
     }
 ];

@@ -1,64 +1,32 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { BaseListComponent } from '../../../../../base/components/base-list-component';
+import { Component, inject, OnInit, Input } from '@angular/core';
+import { BaseEditComponent } from '../../../../../base/components/base-edit-component';
 import { CardModule } from 'primeng/card';
-import { ButtonModule } from 'primeng/button';
-import { FormsModule, ReactiveFormsModule, Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { SubmitButtonsComponent } from '../../../../../shared/components/submit-buttons/submit-buttons.component';
-import { PrimeDataTableComponent } from '../../../../../shared/components/primeng/p-datatable/p-datatable.component';
-import { PTitleToolbarComponent } from '../../../../../shared/components/primeng/p-title-toolbar/p-title-toolbar.component';
-import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { ActivatedRoute } from '@angular/router';
+import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { PrimeInputTextComponent } from '../../../../../shared/components/primeng/p-input-text/p-input-text.component';
 import { DepartmentsService } from '../../../../../shared/services/settings/departments/departments.service';
-import { TableOptions } from '../../../../../shared/interfaces';
-import { HttpService } from '../../../../../core/services/http/http.service';
+import { DialogService, DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { ActivatedRoute } from '@angular/router';
+import { Department } from '../../../../models/department-dto';
+import { SubmitButtonsComponent } from '../../../../../shared/components/submit-buttons/submit-buttons.component';
 
 @Component({
     selector: 'app-add-edit-department',
     standalone: true,
-    imports: [CardModule, ButtonModule, FormsModule, ReactiveFormsModule, SubmitButtonsComponent, PrimeDataTableComponent, PTitleToolbarComponent],
+    imports: [ CardModule, FormsModule, ReactiveFormsModule, PrimeInputTextComponent, SubmitButtonsComponent],
     templateUrl: './add-edit-department.component.html',
+    styleUrl: './add-edit-department.component.css'
 })
-export class AddEditDepartmentComponent extends BaseListComponent implements OnInit {
-    override dialogService: DialogService = inject(DialogService);
+export class AddEditDepartmentComponent extends BaseEditComponent implements OnInit {
     departmentsService: DepartmentsService = inject(DepartmentsService);
-    fb = inject(FormBuilder);
-    private config: DynamicDialogConfig = inject(DynamicDialogConfig);
+    dialogService: DialogService = inject(DialogService);
+    dialogRef: DynamicDialogRef = inject(DynamicDialogRef);
+    dialogConfig: DynamicDialogConfig = inject(DynamicDialogConfig);
 
-    // Form properties from BaseEditComponent
-    model: any = {};
-    form!: FormGroup;
-    isEnglish = false;
-    override language: string = 'en';
-    id: string = '';
-    override pageType: string = '';
-
-    override tableOptions: TableOptions = {
-        inputUrl: {
-            getAll: 'v1/departments/getAll',
-            delete: 'v1/departments/delete/'
-        },
-        bodyOptions: {
-            pageNumber: 1,
-            pageSize: 5,
-            orderByValue: [{ colId: 'id', sort: 'asc' }],
-            filter: {}
-        },
-        appId: 0,
-        inputCols: [
-            { field: 'code', header: 'الكود', filter: true, filterMode: 'text' },
-            { field: 'nameAr', header: 'الاسم بالعربية', filter: true, filterMode: 'text' },
-            { field: 'nameEn', header: 'الاسم بالإنجليزية', filter: true, filterMode: 'text' }
-        ],
-        inputActions: [
-            { name: 'تعديل', icon: 'pi pi-pencil', isEdit: true, route: '/pages/settings/Departments/', allowAll: true },
-            { name: 'حذف', icon: 'pi pi-trash', isDelete: true, allowAll: true }
-        ],
-        permissions: { componentName: 'Departments', listOfPermissions: [], allowAll: true }
+    @Input() apiConfig: { getEdit: string; add: string; update: string } = {
+        getEdit: 'getEdit',
+        add: 'add',
+        update: 'update'
     };
-
-    override get service(): HttpService {
-        return this.departmentsService;
-    }
 
     constructor(override activatedRoute: ActivatedRoute) {
         super(activatedRoute);
@@ -67,65 +35,72 @@ export class AddEditDepartmentComponent extends BaseListComponent implements OnI
     override ngOnInit(): void {
         super.ngOnInit();
 
-        // Check if this is opened as a dialog
-        if (this.config.data) {
-            this.pageType = this.config.data.pageType;
-            if (this.pageType === 'edit') {
-                this.id = this.config.data.row.rowData.id;
+        // Get dialog data properly
+        const dialogData = this.dialogConfig.data;
+        if (dialogData) {
+            this.pageType = dialogData.pageType;
+            if (this.pageType === 'edit' && dialogData.row?.rowData) {
+                this.id = dialogData.row.rowData.id;
             }
         }
 
         if (this.pageType === 'edit') {
             this.getEditDepartment();
-        } else if (this.pageType === 'add') {
-            this.initFormGroup();
         } else {
-            // This is the main list view
-            this.loadDataFromServer();
-            this.columnSearchInput();
+            this.initFormGroup();
         }
     }
 
-    openAddDialog() {
-        this.openDialog(AddEditDepartmentComponent, 'إضافة قسم جديد', { pageType: 'add' });
-    }
-
-    initFormGroup() {
-        this.form = this.fb.group({
-            id: [''],
-            code: ['', Validators.required],
-            nameAr: ['', Validators.required],
-            nameEn: ['']
-        });
-    }
-
+   initFormGroup() {
+    this.form = this.fb.group({
+        id: [''],
+        name: ['', Validators.required],
+        shortName: ['', Validators.required],
+        overview: [''],
+        type: ['', Validators.required],
+        image: [''],
+        contact: this.fb.group({
+            email: ['', Validators.email],
+            phone: [''],
+            office: ['', Validators.required],
+            headOfDepartment: ['', Validators.required]
+        })
+    });
+}
     getEditDepartment = () => {
-        this.departmentsService.getEditDepartments(this.id).subscribe((department: any) => {
-            this.initFormGroup();
-            this.form.patchValue(department);
+        this.departmentsService.getStaticDepartment(this.id).subscribe({
+            next: (department: Department | undefined) => {
+                if (department) {
+                    this.initFormGroup();
+                    this.form.patchValue(department);
+                }
+            },
+            error: (error: any) => {
+                console.error('Error loading department:', error);
+                // You might want to show an error message to the user here
+            }
         });
     };
 
     submit() {
+        if (this.form.invalid) {
+            this.form.markAllAsTouched();
+            return;
+        }
+
         if (this.pageType === 'add') {
-            this.departmentsService.add(this.form.value).subscribe(() => {
-                this.closeDialog();
-            });
+            // Mock add operation for static data
+            console.log('Adding department:', this.form.value);
+            this.closeDialog();
         }
         if (this.pageType === 'edit') {
-            this.departmentsService.update({ id: this.id, ...this.form.value }).subscribe(() => {
-                this.closeDialog();
-            });
+            // Mock update operation for static data
+            console.log('Updating department:', { id: this.id, ...this.form.value });
+            this.closeDialog();
         }
     }
 
     closeDialog() {
-        if (this.dialogRef) {
-            this.dialogRef.close();
-        } else {
-            this.dialogService.dialogComponentRefMap.forEach((dialog) => {
-                dialog.destroy();
-            });
-        }
+        this.dialogRef?.close();
     }
 }

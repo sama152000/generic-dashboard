@@ -1,0 +1,21 @@
+<p-card class="p-2 m-0">
+    @if (form) {
+        <form method="post" class="row" [formGroup]="form">
+            <div class="col-lg-6">
+                <app-prime-input-text [formGroup]="form" controlName="name" validatorLanguageType="ar" [label]="'اسم البرنامج'"></app-prime-input-text>
+            </div>
+            <div class="col-lg-6">
+                <app-prime-input-text [formGroup]="form" controlName="description" [label]="'الوصف'"></app-prime-input-text>
+            </div>
+            <div class="col-lg-6">
+                <app-prime-input-text [formGroup]="form" controlName="duration" [label]="'المدة'"></app-prime-input-text>
+            </div>
+            <div class="col-lg-6">
+                <app-prime-input-text [formGroup]="form" controlName="degree" [label]="'الدرجة'"></app-prime-input-text>
+            </div>
+        </form>
+    }
+</p-card>
+@if (form) {
+    <app-submit-buttons [isSubmitDisabled]="form.invalid" [submitButtonText]="pageType === 'add' ? 'إضافة' : 'حفظ'" (submit)="submit()" (cancel)="closeDialog()"></app-submit-buttons>
+}

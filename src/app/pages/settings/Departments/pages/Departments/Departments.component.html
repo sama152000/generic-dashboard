@@ -1,18 +1,28 @@
-<p-card class="p-2 m-0">
-    @if (form) {
-        <form method="post" class="row" [formGroup]="form">
-            <div class="col-lg-6">
-                <app-prime-input-text [formGroup]="form" controlName="nameAr" validatorLanguageType="ar" [label]="'مسمي الفرع بالعربية'"> </app-prime-input-text>
+<div class="page-wrapper d-flex flex-column h-100 card">
+    <app-p-title-toolbar [pageTitle]="'الأقسام'"></app-p-title-toolbar>
+
+    <div class="dataBox ">
+        <a class="addLink">
+            <button class="px-2 py-1 mt-2 main-btn align-self-center font-14 main border-radius-2 mt-sm-0" (click)="openAdd()" type="button" pButton pRipple>
+                <div class="d-flex align-items-center">
+                    <i class="bx bx-plus m-inline-end-1 font-18"></i>
+                    <span class="p-inline-end-1">Add New Department</span>
+                </div>
+            </button>
+        </a>
+        <a class="addLink">
+    <button class="px-2 py-1 mt-2 main-btn align-self-center font-14 main border-radius-2 mt-sm-0" [routerLink]="['features']" type="button" pButton pRipple>
+        <div class="d-flex align-items-center">
+            <i class="bx bx-plus m-inline-end-1 font-18"></i>
+            <span class="p-inline-end-1">Add department details</span>
+        </div>
+    </button>
+</a>
+
+        @if (tableOptions) {
+            <div class="mt-4">
+                <app-p-datatable (event)="handleEvent($event)" [tableOptions]="tableOptions" [data]="data" [totalCount]="totalCount" [pageSize]="dataTableService.opt.pageSize"> </app-p-datatable>
             </div>
-            <div class="col-lg-6">
-                <app-prime-input-text [formGroup]="form" controlName="nameEn"  [label]="'مسمي الفرع بالإنجليزية'"> </app-prime-input-text>
-            </div>
-            <div class="col-lg-6">
-                <app-prime-input-text [formGroup]="form" controlName="code" [label]="'الكود'"> </app-prime-input-text>
-            </div>
-        </form>
-    }
-</p-card>
-@if (form) {
-    <app-submit-buttons [isSubmitDisabled]="form.invalid" [submitButtonText]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SAVE'" (submit)="submit()" (cancel)="closeDialog()"> </app-submit-buttons>
-}
+        }
+    </div>
+</div>

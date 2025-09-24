@@ -1,0 +1,26 @@
+<p-card class="p-2 m-0">
+    <div class="mb-3">
+        <label for="departmentSelect" class="form-label">اختر القسم</label>
+        <p-select id="departmentSelect"
+                  [(ngModel)]="selectedDepartment"
+                  [options]="(departments$ | async)!"
+                  optionLabel="name"
+                  optionValue="id"
+                  placeholder="اختر قسمًا"
+                  class="w-full" />
+    </div>
+
+    @if (selectedDepartment) {
+        <p-tabs>
+            <p-tabpanel header="البرامج">
+                <app-program-list [departmentId]="selectedDepartment.id"></app-program-list>
+            </p-tabpanel>
+            <p-tabpanel header="أعضاء هيئة التدريس">
+                <app-faculty-list [departmentId]="selectedDepartment.id"></app-faculty-list>
+            </p-tabpanel>
+            <p-tabpanel header="الأنشطة">
+                <app-activity-list [departmentId]="selectedDepartment.id"></app-activity-list>
+            </p-tabpanel>
+        </p-tabs>
+    }
+</p-card>
