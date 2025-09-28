@@ -56,7 +56,7 @@ export class AddEditFacultyComponent extends BaseEditComponent implements OnInit
     }
 
     getEditFaculty() {
-        this.departmentsService.getStaticFaculty(this.departmentId).subscribe({
+        this.departmentsService.getFaculty(this.departmentId).subscribe({
             next: (faculty: Faculty[]) => {
                 const member = faculty.find(f => f.id === this.id);
                 if (member) {
@@ -77,14 +77,28 @@ export class AddEditFacultyComponent extends BaseEditComponent implements OnInit
         }
         const faculty = { ...this.form.value, departmentId: this.departmentId };
         if (this.pageType === 'add') {
-            // Mock add operation for static data
-            console.log('Adding faculty:', faculty);
-            this.closeDialog();
+            this.departmentsService.addFaculty(this.departmentId, faculty).subscribe({
+                next: () => {
+                    this.alert.success('تم إضافة عضو هيئة التدريس بنجاح');
+                    this.closeDialog();
+                },
+                error: (error: any) => {
+                    console.error('Error adding faculty:', error);
+                    this.alert.error('خطأ في إضافة عضو هيئة التدريس');
+                }
+            });
         }
         if (this.pageType === 'edit') {
-            // Mock update operation for static data
-            console.log('Updating faculty:', faculty);
-            this.closeDialog();
+            this.departmentsService.updateFaculty(this.departmentId, faculty).subscribe({
+                next: () => {
+                    this.alert.success('تم تعديل عضو هيئة التدريس بنجاح');
+                    this.closeDialog();
+                },
+                error: (error: any) => {
+                    console.error('Error updating faculty:', error);
+                    this.alert.error('خطأ في تعديل عضو هيئة التدريس');
+                }
+            });
         }
     }
 

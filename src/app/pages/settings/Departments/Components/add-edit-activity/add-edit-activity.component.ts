@@ -1,7 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { BaseEditComponent } from '../../../../../base/components/base-edit-component';
 import { CardModule } from 'primeng/card';
-import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { DatePickerModule } from 'primeng/datepicker';
+import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PrimeInputTextComponent } from '../../../../../shared/components/primeng/p-input-text/p-input-text.component';
 import { DepartmentsService } from '../../../../../shared/services/settings/departments/departments.service';
 import { DialogService, DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
@@ -12,7 +13,7 @@ import { SubmitButtonsComponent } from '../../../../../shared/components/submit-
 @Component({
     selector: 'app-add-edit-activity',
     standalone: true,
-    imports: [CardModule, FormsModule, ReactiveFormsModule, PrimeInputTextComponent, SubmitButtonsComponent],
+    imports: [CardModule, DatePickerModule, FormsModule, ReactiveFormsModule, PrimeInputTextComponent, SubmitButtonsComponent],
     templateUrl: './add-edit-activity.component.html',
     styleUrl: './add-edit-activity.component.css'
 })
@@ -55,12 +56,15 @@ export class AddEditActivityComponent extends BaseEditComponent implements OnIni
     }
 
     getEditActivity() {
-        this.departmentsService.getStaticActivities(this.departmentId).subscribe({
+        this.departmentsService.getActivities(this.departmentId).subscribe({
             next: (activities: Activity[]) => {
                 const activity = activities.find(a => a.id === this.id);
                 if (activity) {
                     this.initFormGroup();
-                    this.form.patchValue(activity);
+                    this.form.patchValue({
+                        ...activity,
+                        date: new Date(activity.date)
+                    });
                 }
             },
             error: (error: any) => {
@@ -74,17 +78,35 @@ export class AddEditActivityComponent extends BaseEditComponent implements OnIni
             this.form.markAllAsTouched();
             return;
         }
-        const activity = { ...this.form.value, departmentId: this.departmentId };
+        const activity = { ...this.form.value, departmentId: this.departmentId, date: this.form.value.date.toISOString().split('T')[0] };
         if (this.pageType === 'add') {
-            // Mock add operation for static data
-            console.log('Adding activity:', activity);
-            this.closeDialog();
+            this.departmentsService.addActivity(this.departmentId, activity).subscribe({
+                next: () => {
+                    this.alert.success('تم إضافة النشاط بنجاح');
+                    this.closeDialog();
+                },
+                error: (error: any) => {
+                    console.error('Error adding activity:', error);
+                    this.alert.error('خطأ في إضافة النشاط');
+                }
+            });
         }
         if (this.pageType === 'edit') {
-            // Mock update operation for static data
-            console.log('Updating activity:', activity);
-            this.closeDialog();
+            this.departmentsService.updateActivity(this.departmentId, activity).subscribe({
+                next: () => {
+                    this.alert.success('تم تعديل النشاط بنجاح');
+                    this.closeDialog();
+                },
+                error: (error: any) => {
+                    console.error('Error updating activity:', error);
+                    this.alert.error('خطأ في تعديل النشاط');
+                }
+            });
         }
+    }
+
+    get dateControl(): FormControl {
+        return this.form.get('date') as FormControl;
     }
 
     closeDialog() {

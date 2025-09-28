@@ -8,6 +8,7 @@ import { PTitleToolbarComponent } from '../../../../../shared/components/primeng
 import { PrimeDataTableComponent } from '../../../../../shared/components/primeng/p-datatable/p-datatable.component';
 import { Faculty } from '../../../../models/department-dto';
 import { AddEditFacultyComponent } from '../add-edit-faculty/add-edit-faculty.component';
+import { DataTableService } from '../../../../../shared/services/table/datatable.service';
 
 @Component({
     selector: 'app-faculty-list',
@@ -19,7 +20,9 @@ import { AddEditFacultyComponent } from '../add-edit-faculty/add-edit-faculty.co
 export class FacultyListComponent extends BaseListComponent {
     @Input() departmentId: string = '';
     tableOptions!: TableOptions;
+    override data: Faculty[] = [];
     service = inject(DepartmentsService);
+    override dataTableService = inject(DataTableService);
 
     constructor(activatedRoute: ActivatedRoute) {
         super(activatedRoute);
@@ -28,6 +31,7 @@ export class FacultyListComponent extends BaseListComponent {
     override ngOnInit(): void {
         super.ngOnInit();
         this.initializeTableOptions();
+        this.loadDataFromServer();
     }
 
     initializeTableOptions() {
@@ -75,7 +79,33 @@ export class FacultyListComponent extends BaseListComponent {
         };
     }
 
+    override loadDataFromServer(): void {
+        this.service.getFaculty(this.departmentId).subscribe({
+            next: (faculty: Faculty[]) => {
+                this.data = faculty;
+                this.totalCount = faculty.length;
+            },
+            error: (error: any) => {
+                console.error('Error loading faculty:', error);
+                this.alert.error('خطأ في جلب أعضاء هيئة التدريس');
+            }
+        });
+    }
 
+    override handleEvent(event: any) {
+        if (event.eventType === 'delete') {
+            this.service.removeFaculty(this.departmentId, event.data.id).subscribe({
+                next: () => {
+                    this.alert.success('تم حذف عضو هيئة التدريس بنجاح');
+                    this.loadDataFromServer();
+                },
+                error: (error: any) => {
+                    console.error('Error deleting faculty:', error);
+                    this.alert.error('خطأ في حذف عضو هيئة التدريس');
+                }
+            });
+        }
+    }
 
     openAdd() {
         this.openDialog(AddEditFacultyComponent, 'إضافة عضو هيئة تدريس جديد', { pageType: 'add', departmentId: this.departmentId });
@@ -89,11 +119,4 @@ export class FacultyListComponent extends BaseListComponent {
         this.destroy$.next(true);
         this.destroy$.unsubscribe();
     }
-
-    override handleEvent(event: any) {
-    if (event.eventType === 'delete') {
-        console.log('Deleting faculty with ID:', event.data);
-        this.loadDataFromServer();
-    }
-}
 }

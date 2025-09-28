@@ -3,11 +3,13 @@
     flex-direction: column;
     min-height: 100vh;
     justify-content: space-between;
-    padding: 6rem 2rem 0 2rem;
-    transition: margin-left var(--layout-section-transition-duration);
+    padding: 5.5rem var(--space-8) 0 var(--space-8);
+    transition: all var(--layout-section-transition-duration);
+    background: #f5f5f5;
 }
 
 .layout-main {
     flex: 1 1 auto;
-    padding-bottom: 2rem;
+    padding-bottom: var(--space-8);
+    background: transparent;
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MenuItem } from 'primeng/api';
@@ -15,20 +15,21 @@ import { AppMenuitem } from './app.menuitem';
         </ng-container>
     </ul> `
 })
-export class AppMenu {
+export class AppMenu implements OnInit {
     model: MenuItem[] = [];
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.model = [
             {
                 label: 'الرئيسية',
                 items: [
-                    { label: 'لوحة التحكم', icon: 'pi pi-fw pi-home', routerLink: ['/'] }
+                    { label: 'لوحة التحكم', icon: 'pi pi-fw pi-home', routerLink: ['/'] },
+                   
                 ]
             },
             {
-                label: 'الإعدادات',
-                icon: 'pi pi-fw pi-spin pi-cog',
+                label: 'إدارة النظام',
+                icon: 'pi pi-fw pi-cog',
                 items: [
                     {
                         label: 'نظرة عامة',
@@ -40,6 +41,7 @@ export class AppMenu {
                         icon: 'pi pi-fw pi-sliders-h',
                         routerLink: ['/pages/settings/hero-management']
                     },
+                    
                     {
                         label: 'الصفحات',
                         icon: 'pi pi-fw pi-folder',
@@ -66,6 +68,7 @@ export class AppMenu {
                             }
                         ]
                     },
+                   
                     {
                         label: 'المنشورات',
                         icon: 'pi pi-fw pi-megaphone',
@@ -77,6 +80,7 @@ export class AppMenu {
                             }
                         ]
                     },
+                   
                     {
                         label: 'الصفحات المخصصة',
                         icon: 'pi pi-fw pi-file',
@@ -98,32 +102,25 @@ export class AppMenu {
                             }
                         ]
                     },
+                   
                     {
                         label: 'الوسائط',
                         icon: 'pi pi-fw pi-images',
                         routerLink: ['/pages/settings/media']
                     },
+                
                     {
                         label: 'القوائم',
                         icon: 'pi pi-fw pi-bars',
                         routerLink: ['/pages/settings/menus']
                     },
+                  
                     {
                         label: 'الإعدادات',
                         icon: 'pi pi-fw pi-cog',
                         routerLink: ['/pages/settings']
-                    }
-                ]
-            },
-            {
-                label: 'الشاشات',
-                icon: 'pi pi-fw pi-briefcase',
-                items: [
-                    {
-                        label: 'الأصناف',
-                        icon: 'pi pi-fw pi-tags',
-                        routerLink: ['/pages/items']
-                    }
+                    },
+                 
                 ]
             }
         ];

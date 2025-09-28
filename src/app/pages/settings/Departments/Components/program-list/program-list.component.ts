@@ -92,9 +92,16 @@ export class ProgramListComponent extends BaseListComponent {
 
     override handleEvent(event: any) {
         if (event.eventType === 'delete') {
-            // Mock delete operation for static data
-            console.log('Deleting program with ID:', event.data);
-            this.loadData(); // Reload data after delete
+            this.service.removeProgram(this.departmentId, event.data.id).subscribe({
+                next: () => {
+                    this.alert.success('تم حذف البرنامج بنجاح');
+                    this.loadData();
+                },
+                error: (error: any) => {
+                    console.error('Error deleting program:', error);
+                    this.alert.error('خطأ في حذف البرنامج');
+                }
+            });
         }
     }
 

@@ -1,0 +1,292 @@
+/* Modern Professional Topbar Styling */
+:root {
+  --primary-color: #1f2a44;
+  --accent-gold: #ffd700;
+  --gradient-primary: linear-gradient(90deg, #1f2a44 0%, #2c3e50 100%);
+  --light-bg: #f8f9fa;
+  --text-primary: #1f2a44;
+  --text-secondary: #6c757d;
+  --surface-card: #ffffff;
+  --surface-border: #dee2e6;
+  --surface-100: #f1f3f5;
+  --surface-300: #dee2e6;
+  --surface-500: #adb5bd;
+  --surface-600: #6c757d;
+  --surface-700: #495057;
+  --surface-800: #343a40;
+  --surface-900: #212529;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --font-medium: 500;
+  --font-bold: 700;
+  --text-sm: 0.875rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --shadow-base: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Layout Topbar */
+.layout-topbar {
+  position: fixed;
+  height: 4.5rem;
+  z-index: 997;
+  left: 0;
+  top: 0;
+  width: 100%;
+  padding: 0 var(--spacing-xl);
+  background: var(--gradient-primary);
+  transition: var(--transition-base);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--shadow-lg);
+  border-bottom: 3px solid var(--accent-gold);
+}
+
+.layout-topbar-logo-container {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+.layout-menu-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  cursor: pointer;
+  transition: var(--transition-base);
+  backdrop-filter: blur(10px);
+}
+
+.layout-menu-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+.layout-menu-button i {
+  font-size: 1.25rem;
+}
+
+.layout-topbar-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  text-decoration: none;
+  color: white;
+  font-weight: var(--font-bold);
+  font-size: var(--text-xl);
+  transition: var(--transition-base);
+}
+
+.layout-topbar-logo:hover {
+  color: var(--accent-gold);
+  transform: translateX(2px);
+}
+
+.layout-topbar-logo img {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--accent-gold);
+  object-fit: cover;
+}
+
+.logo-text {
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+  color: white;
+  transition: var(--transition-base);
+}
+
+.layout-topbar-logo:hover .logo-text {
+  color: var(--accent-gold);
+}
+
+.layout-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.layout-config-menu {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.layout-topbar-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  cursor: pointer;
+  transition: var(--transition-base);
+  backdrop-filter: blur(10px);
+  position: relative;
+}
+
+.layout-topbar-action:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: var(--accent-gold);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.layout-topbar-action i {
+  font-size: 1.1rem;
+  transition: var(--transition-base);
+}
+
+.layout-topbar-action:hover i {
+  color: var(--accent-gold);
+}
+
+.layout-topbar-menu-button {
+  display: none;
+}
+
+.layout-topbar-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: var(--surface-card);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--surface-border);
+  padding: var(--spacing-lg);
+  min-width: 15rem;
+  z-index: 1000;
+}
+
+.layout-topbar-menu-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.layout-topbar-menu .layout-topbar-action {
+  width: 100%;
+  height: auto;
+  justify-content: flex-start;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  gap: var(--spacing-md);
+}
+
+.layout-topbar-menu .layout-topbar-action:hover {
+  background: var(--surface-100);
+  color: var(--primary-color);
+  transform: translateX(4px);
+}
+
+.layout-topbar-menu .layout-topbar-action span {
+  font-weight: var(--font-medium);
+  font-size: var(--text-sm);
+}
+
+/* Responsive Design */
+@media (max-width: 991px) {
+  .layout-topbar {
+    padding: 0 var(--spacing-lg);
+  }
+
+  .layout-topbar-logo-container {
+    gap: var(--spacing-md);
+  }
+
+  .layout-menu-button {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .layout-topbar-menu-button {
+    display: inline-flex;
+  }
+
+  .layout-topbar-menu.lg\:block {
+    display: none !important;
+  }
+
+  .layout-topbar-logo {
+    font-size: var(--text-lg);
+  }
+
+  .layout-topbar-logo img {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .layout-topbar {
+    height: 4rem;
+    padding: 0 var(--spacing-md);
+  }
+
+  .layout-topbar-actions {
+    gap: var(--spacing-sm);
+  }
+
+  .layout-topbar-action {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .layout-menu-button {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+}
+
+/* Dark Mode Support */
+.dark .layout-topbar {
+  background: linear-gradient(90deg, #0f172a 0%, #1e293b 100%);
+  border-bottom-color: var(--accent-gold);
+}
+
+.dark .layout-topbar-action {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark .layout-topbar-action:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.dark .layout-topbar-menu {
+  background: var(--surface-800);
+  border-color: var(--surface-700);
+}
+
+.dark .layout-topbar-menu .layout-topbar-action {
+  color: var(--surface-100);
+}
+
+.dark .layout-topbar-menu .layout-topbar-action:hover {
+  background: var(--surface-700);
+  color: white;
+}

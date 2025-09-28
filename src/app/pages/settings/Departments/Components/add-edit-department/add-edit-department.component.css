@@ -1,0 +1,7 @@
+::ng-deep .p-dialog-title {
+    color: var(--primary-600);
+}
+
+::ng-deep .p-dialog-header {
+    background: none;
+}

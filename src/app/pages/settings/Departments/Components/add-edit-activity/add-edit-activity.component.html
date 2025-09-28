@@ -8,7 +8,7 @@
                 <app-prime-input-text [formGroup]="form" controlName="description" [label]="'الوصف'"></app-prime-input-text>
             </div>
             <div class="col-lg-6">
-                <app-prime-input-text [formGroup]="form" controlName="date" [label]="'التاريخ'"></app-prime-input-text>
+                <p-datepicker [formControl]="dateControl" [showIcon]="true" dateFormat="yy-mm-dd" placeholder="اختر التاريخ"></p-datepicker>
             </div>
             <div class="col-lg-6">
                 <app-prime-input-text [formGroup]="form" controlName="image" [label]="'الصورة'"></app-prime-input-text>

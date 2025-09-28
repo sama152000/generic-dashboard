@@ -21,6 +21,7 @@ export interface Program {
   description: string;
   duration: string; 
   degree: string;
+  departmentId: string;
 }
 
 export interface Faculty {
@@ -30,6 +31,7 @@ export interface Faculty {
   specialization: string; 
   email: string; 
   photo?: string; 
+  departmentId: string;
 }
 
 export interface Activity {
@@ -38,4 +40,5 @@ export interface Activity {
   description: string; 
   date: string; 
   image?: string; 
+  departmentId: string;
 }

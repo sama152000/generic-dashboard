@@ -169,6 +169,7 @@
     transition-duration: 0.01ms !important;
   }
 }
+
 /* Main Container */
 .dataBox {
   display: flex;
@@ -382,7 +383,6 @@
 /* Text Truncation */
 .text-truncate-3 {
   display: -webkit-box;
-  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   line-height: var(--leading-snug);

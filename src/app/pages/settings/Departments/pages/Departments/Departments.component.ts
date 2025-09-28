@@ -4,27 +4,33 @@ import { CardModule } from 'primeng/card';
 import { DepartmentsService } from '../../../../../shared/services/settings/departments/departments.service';
 import { TableOptions } from '../../../../../shared/interfaces';
 import { BaseListComponent } from '../../../../../base/components/base-list-component';
-import { takeUntil } from 'rxjs';
 import { AddEditDepartmentComponent } from '../../Components/add-edit-department/add-edit-department.component';
 import { PTitleToolbarComponent } from "../../../../../shared/components/primeng/p-title-toolbar/p-title-toolbar.component";
 import { PrimeDataTableComponent } from "../../../../../shared/components/primeng/p-datatable/p-datatable.component";
+import { DataTableService } from '../../../../../shared/services/table/datatable.service';
+import { HttpService } from '../../../../../core/services/http/http.service';
 
 @Component({
     selector: 'app-departments',
     standalone: true,
     imports: [RouterModule, CardModule, PTitleToolbarComponent, PrimeDataTableComponent],
-    templateUrl:'./Departments.component.html',
+    templateUrl: './Departments.component.html',
     styleUrl: './Departments.component.css'
 })
 export class DepartmentsComponent extends BaseListComponent {
-    @Input() apiConfig: { getPaged: string; delete: string } = { // @Input لتخصيص APIs
+    @Input() apiConfig: { getPaged: string; delete: string } = {
         getPaged: 'getPaged',
         delete: 'deletesoft'
     };
 
     isEnglish = false;
     tableOptions!: TableOptions;
-    service = inject(DepartmentsService);
+    private _service = inject(DepartmentsService);
+    override dataTableService = inject(DataTableService);
+
+    override get service(): HttpService {
+        return this._service;
+    }
 
     constructor(activatedRoute: ActivatedRoute) {
         super(activatedRoute);
@@ -33,18 +39,19 @@ export class DepartmentsComponent extends BaseListComponent {
     override ngOnInit(): void {
         super.ngOnInit();
         this.initializeTableOptions();
+        this.loadDataFromServer();
     }
 
     initializeTableOptions() {
         this.tableOptions = {
             inputUrl: {
-                getAll: `v1/departments/${this.apiConfig.getPaged}`, // استخدم apiConfig
+                getAll: `v1/departments/${this.apiConfig.getPaged}`,
                 delete: `v1/departments/${this.apiConfig.delete}`
             },
             inputCols: this.initializeTableColumns(),
             inputActions: this.initializeTableActions(),
             permissions: {
-                componentName: 'DEPARTMENTS-MANAGEMENT', // غير حسب الاحتياج
+                componentName: 'DEPARTMENTS-MANAGEMENT',
                 allowAll: true,
                 listOfPermissions: []
             },
@@ -84,7 +91,6 @@ export class DepartmentsComponent extends BaseListComponent {
                 header: 'نظرة عامة',
                 filter: false
             }
-            // أضف image و contact إذا لازم، بس مش مناسب للجدول دائمًا
         ];
     }
 
@@ -106,8 +112,46 @@ export class DepartmentsComponent extends BaseListComponent {
                 color: 'text-error',
                 allowAll: true,
                 isDelete: true
+            },
+            {
+                name: 'Details',
+                icon: 'pi pi-info-circle',
+                color: 'text-middle',
+                isCallBack: true,
+                call: () => {
+                    this.route.navigate(['features'], { relativeTo: this.activatedRoute });
+                },
+                allowAll: true
             }
         ];
+    }
+
+    override loadDataFromServer(): void {
+        this._service.departments.subscribe({
+            next: (departments) => {
+                this.data = departments;
+                this.totalCount = departments.length;
+            },
+            error: (error: any) => {
+                console.error('Error loading departments:', error);
+                this.alert.error('خطأ في جلب الأقسام');
+            }
+        });
+    }
+
+    override handleEvent(event: any) {
+        if (event.eventType === 'delete') {
+            this._service.remove(event.data).subscribe({
+                next: () => {
+                    this.alert.success('تم حذف القسم بنجاح');
+                    this.loadDataFromServer();
+                },
+                error: (error: any) => {
+                    console.error('Error deleting department:', error);
+                    this.alert.error('خطأ في حذف القسم');
+                }
+            });
+        }
     }
 
     openAdd() {
@@ -123,7 +167,6 @@ export class DepartmentsComponent extends BaseListComponent {
         });
     }
 
-    /* when leaving the component */
     override ngOnDestroy() {
         this.destroy$.next(true);
         this.destroy$.unsubscribe();

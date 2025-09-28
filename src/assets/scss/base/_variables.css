@@ -217,4 +217,10 @@
   --input-radius: var(--radius-md);
   --input-border: var(--surface-border);
   --input-focus-border: var(--primary-500);
+
+  /* Sidebar/Dashboard variables */
+  --light-bg: #f8f9fa;
+  --gradient-primary: linear-gradient(90deg, #0c685c 0%, #14a38e 100%);
+  --accent-gold: #ffd700;
+  --primary-color: #0c685c;
 }

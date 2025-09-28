@@ -2,40 +2,39 @@
     @if (form) {
         <form method="post" class="row" [formGroup]="form">
             <div class="col-lg-6">
-                <app-prime-input-text [formGroup]="form" controlName="name" validatorLanguageType="ar" [label]="'اسم القسم'"> </app-prime-input-text>
+                <app-prime-input-text [formGroup]="form" controlName="name" validatorLanguageType="ar" [label]="'اسم القسم'"></app-prime-input-text>
             </div>
             <div class="col-lg-6">
-                <app-prime-input-text [formGroup]="form" controlName="shortName" [label]="'الاسم المختصر'"> </app-prime-input-text>
+                <app-prime-input-text [formGroup]="form" controlName="shortName" [label]="'الاسم المختصر'"></app-prime-input-text>
             </div>
             <div class="col-lg-6">
-                <app-prime-input-text [formGroup]="form" controlName="overview" [label]="'نظرة عامة'"> </app-prime-input-text>
+                <app-prime-input-text [formGroup]="form" controlName="overview" [label]="'نظرة عامة'"></app-prime-input-text>
             </div>
             <div class="col-lg-6">
-                <app-prime-input-text [formGroup]="form" controlName="type" [label]="'النوع'"> </app-prime-input-text>
+                <app-prime-input-text [formGroup]="form" controlName="type" [label]="'النوع'"></app-prime-input-text>
             </div>
             <div class="col-lg-6">
-                <app-prime-input-text [formGroup]="form" controlName="image" [label]="'الصورة'"> </app-prime-input-text>
+                <app-prime-input-text [formGroup]="form" controlName="image" [label]="'الصورة'"></app-prime-input-text>
             </div>
             <!-- Contact Subform -->
-           <!-- Contact Subform -->
-<div class="col-lg-12">
-    <h5>معلومات الاتصال</h5>
-</div>
-<div class="col-lg-4">
-    <app-prime-input-text [formGroup]="form" controlName="contact.email" [label]="'الإيميل'"></app-prime-input-text>
-</div>
-<div class="col-lg-4">
-    <app-prime-input-text [formGroup]="form" controlName="contact.phone" [label]="'الهاتف'"></app-prime-input-text>
-</div>
-<div class="col-lg-4">
-    <app-prime-input-text [formGroup]="form" controlName="contact.office" [label]="'المكتب'"></app-prime-input-text>
-</div>
-<div class="col-lg-4">
-    <app-prime-input-text [formGroup]="form" controlName="contact.headOfDepartment" [label]="'رئيس القسم'"></app-prime-input-text>
-</div>
+            <div class="col-lg-12">
+                <h5>معلومات الاتصال</h5>
+            </div>
+            <div class="col-lg-4">
+                <app-prime-input-text [formGroup]="form" controlName="contact.email" [label]="'الإيميل'"></app-prime-input-text>
+            </div>
+            <div class="col-lg-4">
+                <app-prime-input-text [formGroup]="form" controlName="contact.phone" [label]="'الهاتف'"></app-prime-input-text>
+            </div>
+            <div class="col-lg-4">
+                <app-prime-input-text [formGroup]="form" controlName="contact.office" [label]="'المكتب'"></app-prime-input-text>
+            </div>
+            <div class="col-lg-4">
+                <app-prime-input-text [formGroup]="form" controlName="contact.headOfDepartment" [label]="'رئيس القسم'"></app-prime-input-text>
+            </div>
         </form>
     }
 </p-card>
 @if (form) {
-    <app-submit-buttons [isSubmitDisabled]="form.invalid" [submitButtonText]="pageType === 'add' ? 'ACTIONS.SUBMIT' : 'ACTIONS.SAVE'" (submit)="submit()" (cancel)="closeDialog()"> </app-submit-buttons>
+    <app-submit-buttons [isSubmitDisabled]="form.invalid" [submitButtonText]="pageType === 'add' ? 'إضافة' : 'حفظ'" (submit)="submit()" (cancel)="closeDialog()"></app-submit-buttons>
 }

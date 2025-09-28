@@ -12,7 +12,7 @@ import { SubmitButtonsComponent } from '../../../../../shared/components/submit-
 @Component({
     selector: 'app-add-edit-department',
     standalone: true,
-    imports: [ CardModule, FormsModule, ReactiveFormsModule, PrimeInputTextComponent, SubmitButtonsComponent],
+    imports: [CardModule, FormsModule, ReactiveFormsModule, PrimeInputTextComponent, SubmitButtonsComponent],
     templateUrl: './add-edit-department.component.html',
     styleUrl: './add-edit-department.component.css'
 })
@@ -34,8 +34,6 @@ export class AddEditDepartmentComponent extends BaseEditComponent implements OnI
 
     override ngOnInit(): void {
         super.ngOnInit();
-
-        // Get dialog data properly
         const dialogData = this.dialogConfig.data;
         if (dialogData) {
             this.pageType = dialogData.pageType;
@@ -43,7 +41,6 @@ export class AddEditDepartmentComponent extends BaseEditComponent implements OnI
                 this.id = dialogData.row.rowData.id;
             }
         }
-
         if (this.pageType === 'edit') {
             this.getEditDepartment();
         } else {
@@ -51,52 +48,69 @@ export class AddEditDepartmentComponent extends BaseEditComponent implements OnI
         }
     }
 
-   initFormGroup() {
-    this.form = this.fb.group({
-        id: [''],
-        name: ['', Validators.required],
-        shortName: ['', Validators.required],
-        overview: [''],
-        type: ['', Validators.required],
-        image: [''],
-        contact: this.fb.group({
-            email: ['', Validators.email],
-            phone: [''],
-            office: ['', Validators.required],
-            headOfDepartment: ['', Validators.required]
-        })
-    });
-}
-    getEditDepartment = () => {
-        this.departmentsService.getStaticDepartment(this.id).subscribe({
+    initFormGroup() {
+        this.form = this.fb.group({
+            id: [''],
+            name: ['', Validators.required],
+            shortName: ['', Validators.required],
+            overview: [''],
+            type: ['', Validators.required],
+            image: [''],
+            contact: this.fb.group({
+                email: ['', Validators.email],
+                phone: [''],
+                office: ['', Validators.required],
+                headOfDepartment: ['', Validators.required]
+            })
+        });
+    }
+
+    getEditDepartment() {
+        this.departmentsService.getEditDepartments(this.id).subscribe({
             next: (department: Department | undefined) => {
                 if (department) {
                     this.initFormGroup();
                     this.form.patchValue(department);
+                } else {
+                    this.alert.error('القسم غير موجود');
                 }
             },
             error: (error: any) => {
                 console.error('Error loading department:', error);
-                // You might want to show an error message to the user here
+                this.alert.error('خطأ في جلب القسم');
             }
         });
-    };
+    }
 
     submit() {
         if (this.form.invalid) {
             this.form.markAllAsTouched();
             return;
         }
-
+        const department = this.form.value;
         if (this.pageType === 'add') {
-            // Mock add operation for static data
-            console.log('Adding department:', this.form.value);
-            this.closeDialog();
+            this.departmentsService.add(department).subscribe({
+                next: () => {
+                    this.alert.success('تم إضافة القسم بنجاح');
+                    this.closeDialog();
+                },
+                error: (error: any) => {
+                    console.error('Error adding department:', error);
+                    this.alert.error('خطأ في إضافة القسم');
+                }
+            });
         }
         if (this.pageType === 'edit') {
-            // Mock update operation for static data
-            console.log('Updating department:', { id: this.id, ...this.form.value });
-            this.closeDialog();
+            this.departmentsService.update(department).subscribe({
+                next: () => {
+                    this.alert.success('تم تعديل القسم بنجاح');
+                    this.closeDialog();
+                },
+                error: (error: any) => {
+                    console.error('Error updating department:', error);
+                    this.alert.error('خطأ في تعديل القسم');
+                }
+            });
         }
     }
 

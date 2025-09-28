@@ -55,7 +55,7 @@ export class AddEditProgramComponent extends BaseEditComponent implements OnInit
     }
 
     getEditProgram() {
-        this.departmentsService.getStaticPrograms(this.departmentId).subscribe({
+        this.departmentsService.getPrograms(this.departmentId).subscribe({
             next: (programs: Program[]) => {
                 const program = programs.find(p => p.id === this.id);
                 if (program) {
@@ -76,14 +76,28 @@ export class AddEditProgramComponent extends BaseEditComponent implements OnInit
         }
         const program = { ...this.form.value, departmentId: this.departmentId };
         if (this.pageType === 'add') {
-            // Mock add operation for static data
-            console.log('Adding program:', program);
-            this.closeDialog();
+            this.departmentsService.addProgram(this.departmentId, program).subscribe({
+                next: () => {
+                    this.alert.success('تم إضافة البرنامج بنجاح');
+                    this.closeDialog();
+                },
+                error: (error: any) => {
+                    console.error('Error adding program:', error);
+                    this.alert.error('خطأ في إضافة البرنامج');
+                }
+            });
         }
         if (this.pageType === 'edit') {
-            // Mock update operation for static data
-            console.log('Updating program:', program);
-            this.closeDialog();
+            this.departmentsService.updateProgram(this.departmentId, program).subscribe({
+                next: () => {
+                    this.alert.success('تم تعديل البرنامج بنجاح');
+                    this.closeDialog();
+                },
+                error: (error: any) => {
+                    console.error('Error updating program:', error);
+                    this.alert.error('خطأ في تعديل البرنامج');
+                }
+            });
         }
     }
 

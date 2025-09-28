@@ -8,6 +8,7 @@ import { PTitleToolbarComponent } from '../../../../../shared/components/primeng
 import { PrimeDataTableComponent } from '../../../../../shared/components/primeng/p-datatable/p-datatable.component';
 import { Activity } from '../../../../models/department-dto';
 import { AddEditActivityComponent } from '../add-edit-activity/add-edit-activity.component';
+import { DataTableService } from '../../../../../shared/services/table/datatable.service';
 
 @Component({
     selector: 'app-activity-list',
@@ -19,7 +20,9 @@ import { AddEditActivityComponent } from '../add-edit-activity/add-edit-activity
 export class ActivityListComponent extends BaseListComponent {
     @Input() departmentId: string = '';
     tableOptions!: TableOptions;
+    override data: Activity[] = [];
     service = inject(DepartmentsService);
+    override dataTableService = inject(DataTableService);
 
     constructor(activatedRoute: ActivatedRoute) {
         super(activatedRoute);
@@ -28,6 +31,7 @@ export class ActivityListComponent extends BaseListComponent {
     override ngOnInit(): void {
         super.ngOnInit();
         this.initializeTableOptions();
+        this.loadDataFromServer();
     }
 
     initializeTableOptions() {
@@ -74,7 +78,33 @@ export class ActivityListComponent extends BaseListComponent {
         };
     }
 
+    override loadDataFromServer(): void {
+        this.service.getActivities(this.departmentId).subscribe({
+            next: (activities: Activity[]) => {
+                this.data = activities;
+                this.totalCount = activities.length;
+            },
+            error: (error: any) => {
+                console.error('Error loading activities:', error);
+                this.alert.error('خطأ في جلب الأنشطة');
+            }
+        });
+    }
 
+    override handleEvent(event: any) {
+        if (event.eventType === 'delete') {
+            this.service.removeActivity(this.departmentId, event.data.id).subscribe({
+                next: () => {
+                    this.alert.success('تم حذف النشاط بنجاح');
+                    this.loadDataFromServer();
+                },
+                error: (error: any) => {
+                    console.error('Error deleting activity:', error);
+                    this.alert.error('خطأ في حذف النشاط');
+                }
+            });
+        }
+    }
 
     openAdd() {
         this.openDialog(AddEditActivityComponent, 'إضافة نشاط جديد', { pageType: 'add', departmentId: this.departmentId });
@@ -88,11 +118,4 @@ export class ActivityListComponent extends BaseListComponent {
         this.destroy$.next(true);
         this.destroy$.unsubscribe();
     }
-
-    override handleEvent(event: any) {
-    if (event.eventType === 'delete') {
-        console.log('Deleting activity with ID:', event.data);
-        this.loadDataFromServer();
-    }
-}
 }

@@ -1,0 +1,88 @@
+Modern Professional Footer Styling
+
+.layout-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xl) var(--spacing-lg);
+  background: var(--surface-100);
+  border-top: 1px solid var(--surface-border);
+  margin-top: auto;
+  position: relative;
+}
+
+.layout-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  border-radius: 0 0 3px 3px;
+}
+
+.site-footer__bottom-text {
+  color: var(--primary-color);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  margin: 0;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.site-footer__bottom-text a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: var(--font-bold);
+  transition: var(--transition-base);
+  position: relative;
+}
+
+.site-footer__bottom-text a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent-gold);
+  transition: width 0.3s ease;
+}
+
+.site-footer__bottom-text a:hover {
+  color: var(--accent-gold);
+  transform: translateY(-1px);
+}
+
+.site-footer__bottom-text a:hover::after {
+  width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .layout-footer {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+
+  .site-footer__bottom-text {
+    font-size: 0.8rem;
+  }
+}
+
+/* Dark Mode Support */
+.dark .layout-footer {
+  border-top-color: var(--surface-700);
+}
+
+.dark .site-footer__bottom-text {
+  color: var(--surface-300);
+}
+
+.dark .site-footer__bottom-text a {
+  color: var(--surface-100);
+}
+
+.dark .site-footer__bottom-text a:hover {
+  color: var(--accent-gold);
+}
